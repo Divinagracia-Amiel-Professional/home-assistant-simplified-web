@@ -14,26 +14,27 @@
     "deploy": "npx ts-node --esm scripts/deploy.ts"
   },
   "dependencies": {
+    "@hakit/components": "^3.1.4",
+    "@hakit/core": "^3.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@hakit/core": "^3.1.4",
-    "@hakit/components": "^3.1.4"
+    "victory": "^36.9.1"
   },
   "devDependencies": {
+    "@types/node": "^20.11.25",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react": "^4.2.1",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.4.5",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "typescript": "^5.2.2",
-    "vite": "^5.1.4",
-    "prettier": "^3.2.5",
-    "dotenv": "^16.4.5",
-    "@types/node": "^20.11.25",
     "node-scp": "^0.0.23",
-    "chalk": "^5.3.0"
+    "prettier": "^3.2.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4"
   }
 }
