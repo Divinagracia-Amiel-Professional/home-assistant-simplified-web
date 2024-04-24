@@ -11,6 +11,19 @@ const channel1 = ['', '2']
 const channel2 = ['4','5']
 
 const useSensorData = () => {
+    const testHistory = useEntity(`sensor.esphometest_1_energy`, {
+        historyOptions: {
+            disable: false,
+            hoursToShow: 10000,
+        }
+    })
+
+    const testDate = new Date(1711967731.424306 * 1000)
+
+    // console.log(testDate)
+
+    // console.log(testHistory)
+
     const chan1_data = channel1.map(order => {
         const currentSensor = useHistory(`sensor.esphometest_1_current${order}`)
         const energySensor = useHistory(`sensor.esphometest_1_energy${order}`)
@@ -41,10 +54,10 @@ const useSensorData = () => {
         })
     })
 
-    const data = {
+    const data = [
         ...chan1_data,
         ...chan2_data
-    }
+    ]
 
     return { data }
 }
