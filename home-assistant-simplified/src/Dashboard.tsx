@@ -31,21 +31,21 @@ const Dashboard = () => {
     wrap='nowrap'
     >
       <SideBar />
-      <Row 
+      <Column
         fullWidth 
         fullHeight
+        style={{
+          marginTop: 50,
+          marginLeft: 15,
+          marginRight: 15
+        }}
       >
-        <Column fullWidth>
-          <h2>Succesfully Authenticated!</h2>
-          <p>The time below should be updating from home asisstant every minute</p>
-        </Column>
-        <TimeCard />
         <p>You have <b>{Object.keys(getAllEntities()).length}</b> entities to start automating with! Have fun!</p>
-        <Group 
-          title="Devices"
-          // style={{
-          //   flexWrap: 'wrap'
-          // }}
+        <Row
+          fullWidth
+          justifyContent='flex-start'
+          alignItems='stretch'
+          gap='1rem'
         >
           <ButtonCard
             sm={6}
@@ -96,13 +96,13 @@ const Dashboard = () => {
             onClick={() => {
             }}
           />
-        </Group>
+        </Row>
         <p>Efan is {JSON.stringify(efanEnabled)} 2</p>
         {/* <p>Sensor from history {JSON.stringify(sensor2volt?.s)}V, {JSON.stringify(sensor2amp?.s)}A</p>
         <p>Sensor Date: {date.toString() !== "Invalid Date" ? date.toString().slice(4,15) : "...Loading" }</p> */}
         {CallApiExample()}
         <EnergyUsageGraph />
-      </Row>
+      </Column>
   </Row> 
 }
 
