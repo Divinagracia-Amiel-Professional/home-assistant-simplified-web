@@ -41,62 +41,6 @@ const Dashboard = () => {
         }}
       >
         <p>You have <b>{Object.keys(getAllEntities()).length}</b> entities to start automating with! Have fun!</p>
-        <Row
-          fullWidth
-          justifyContent='flex-start'
-          alignItems='stretch'
-          gap='1rem'
-        >
-          <ButtonCard
-            sm={6}
-            md={4}
-            lg={4}
-            xlg={3}
-            service='toggle'
-            // active={efanEnabled}
-            hideState={false}
-            entity='switch.esphometest_1_switch2'
-            onClick={() => {
-              setEfanEnabled(prevState => !prevState)
-            }}
-          />
-          <ButtonCard
-            sm={6}
-            md={4}
-            lg={4}
-            xlg={3}
-            service='toggle'
-            // active={efanEnabled}
-            hideState={false}
-            entity='switch.esphometest_1_switch1'
-            onClick={() => {
-            }}
-          />
-          <ButtonCard
-            sm={6}
-            md={4}
-            lg={4}
-            xlg={3}
-            service='toggle'
-            // active={efanEnabled}
-            hideState={false}
-            entity='switch.esphometest_2_switch1'
-            onClick={() => {
-            }}
-          />
-          <ButtonCard
-            sm={6}
-            md={4}
-            lg={4}
-            xlg={3}
-            service='toggle'
-            // active={efanEnabled}
-            hideState={false}
-            entity='switch.esphometest_2_switch2'
-            onClick={() => {
-            }}
-          />
-        </Row>
         <p>Efan is {JSON.stringify(efanEnabled)} 2</p>
         {/* <p>Sensor from history {JSON.stringify(sensor2volt?.s)}V, {JSON.stringify(sensor2amp?.s)}A</p>
         <p>Sensor Date: {date.toString() !== "Invalid Date" ? date.toString().slice(4,15) : "...Loading" }</p> */}
