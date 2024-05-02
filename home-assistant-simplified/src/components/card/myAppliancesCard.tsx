@@ -23,8 +23,6 @@ const defaultIconParams : IconParams = {
 const getIcon = (params: IconParams) => {
     const { type, fill, dimensions } = params
 
-    console.log(type)
-
     switch(type){
         case 'AC':
             return <AirCon fill={fill} height={dimensions} width={dimensions}/>
@@ -78,7 +76,7 @@ const MyApplianceCard = (props: any) => {
             <div
                 className='appliance-card-details'
                 style={{
-                    display: isDetailsExpanded ? 'block' : 'none'
+                    display: isDetailsExpanded ? 'block' : 'none',
                 }}
             >
                 <div
@@ -143,7 +141,8 @@ const MyApplianceCard = (props: any) => {
 export default MyApplianceCard
 
 export {
-    getIcon
+    getIcon,
+    defaultIconParams
 }
 
 export type {

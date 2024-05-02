@@ -14,6 +14,7 @@ function App() {
         contrastThreshold={65}
         tint={0.5}
         globalStyles={`
+          @import url('fonts.css');
           body {
             
           }
