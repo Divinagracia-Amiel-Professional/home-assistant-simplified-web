@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@hakit/components';
 import { HassConnect } from '@hakit/core';
 import Dashboard from './Dashboard';
+import CustomThemeContext from '../scripts/custom-hooks/customThemeContext'
 
 function App() {
   return <>
@@ -19,13 +20,15 @@ function App() {
         `}
         globalComponentStyles={{
           buttonCard: `
-            box-shadow: 0 0 5px 2px var(--ha-S800);
+            box-shadow: 0 0 5px 2px var(--ha-900);
             background-color: var(--ha-S50);
           `,
         }}
         includeThemeControls 
       />
-      <Dashboard />
+      <CustomThemeContext.Provider value={{}}>
+        <Dashboard />
+      </CustomThemeContext.Provider>
     </HassConnect>
   </>
 }

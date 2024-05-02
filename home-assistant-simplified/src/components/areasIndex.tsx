@@ -1,5 +1,8 @@
-import Switches from "./switches";
+import Switches, { CustomSwitches } from "./switches";
+import MyAppliances from "./myAppliances";
 
 export {
-    Switches
+    Switches,
+    MyAppliances,
+    CustomSwitches
 }

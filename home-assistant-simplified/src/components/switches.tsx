@@ -1,6 +1,7 @@
 import { Column, Group, TimeCard, ButtonCard, SidebarCard, AreaCard, Row } from '@hakit/components';
 import { useState, useEffect } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
+import { SwitchCard } from './card/cardsIndex';
 
 const Switches = () => {
     return <Column
@@ -70,3 +71,17 @@ const Switches = () => {
 }
 
 export default Switches
+
+const CustomSwitches = () => {
+    return <>
+        <div
+            className='switches-group'
+        >
+            <SwitchCard />
+        </div>
+    </>
+}
+
+export {
+    CustomSwitches
+}

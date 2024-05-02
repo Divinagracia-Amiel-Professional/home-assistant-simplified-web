@@ -1,7 +1,7 @@
 import { Column, Group, TimeCard, ButtonCard, SidebarCard, AreaCard } from '@hakit/components';
 import { useState, useEffect } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
-import { Switches } from './areasIndex'
+import { Switches, MyAppliances, CustomSwitches } from './areasIndex'
 import { AirCon, Efan, Monitor, SystemUnit } from '../../constants/icons'
 
 const SideBar = () => {
@@ -19,8 +19,7 @@ const SideBar = () => {
             display: 'none'
           }}
           >
-            Switches
-            <Switches />
+            <CustomSwitches />
         </AreaCard>
         <AreaCard 
           image={''} 
@@ -31,7 +30,7 @@ const SideBar = () => {
             display: 'none'
           }}
           >
-            Appliances
+            <MyAppliances />
         </AreaCard>
         <AreaCard 
           image={''} 

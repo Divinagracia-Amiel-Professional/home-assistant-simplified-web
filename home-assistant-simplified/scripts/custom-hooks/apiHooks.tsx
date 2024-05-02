@@ -19,21 +19,21 @@ interface CalendarEvent {
 }
 
 interface Response {
-  data: any,
+  data: any;
   status: string
 }
 
 type Attributes = {
-    friendly_name: string,
+    friendly_name: string;
     unit_of_measurement: string
 }
 
 interface History {
-    attributes?: Attributes,
-    entity_id?: string,
-    last_changed: string,
-    last_updated?: string,
-    state: Number,
+    attributes?: Attributes;
+    entity_id?: string;
+    last_changed: string;
+    last_updated?: string;
+    state: Number;
 }
 
 const CallApiExample = () => {

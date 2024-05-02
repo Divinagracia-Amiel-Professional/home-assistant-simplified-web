@@ -1,5 +1,7 @@
 import MyApplianceCard from "./myAppliancesCard";
+import SwitchCard from "./switchCard";
 
 export {
-    MyApplianceCard
+    MyApplianceCard,
+    SwitchCard,
 }
