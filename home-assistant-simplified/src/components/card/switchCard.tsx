@@ -33,7 +33,8 @@ const SwitchCard = (props: any) => {
         <div
             className='switch-card'
             style={{
-                backgroundColor: 'var(--ha-S50)'
+                backgroundColor: 'var(--ha-S50)',
+                boxShadow: isSocketOn ? '0 0 5px 2px var(--ha-900)' : '0 0 5px 2px var(--ha-S500)'
             }}
         >
             <div
