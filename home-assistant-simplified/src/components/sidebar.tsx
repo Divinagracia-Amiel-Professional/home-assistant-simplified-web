@@ -19,7 +19,8 @@ const SideBar = () => {
             display: 'none'
           }}
           >
-            <CustomSwitches />
+            {/* use Switches Component for the Ha-kit provided switches */}
+            <CustomSwitches /> 
         </AreaCard>
         <AreaCard 
           image={''} 
