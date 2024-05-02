@@ -29,6 +29,8 @@ const SwitchCard = (props: any) => {
 
     const {current, energy, power, voltage} = props.latestSensorData
 
+    const colorLogic = isSocketOn ? 'var(--ha-500)' : 'var(--ha-S500)'
+
     return <>
         <div
             className='switch-card'
@@ -43,11 +45,14 @@ const SwitchCard = (props: any) => {
                 <div
                     className='switch-card-details-header'
                 >
-                    {getIcon(iconParams)}
+                    {getIcon({
+                        ...iconParams,
+                        fill: colorLogic
+                    })}
                     <p
                         className='card-title-text'
                         style={{
-                            color: 'var(--ha-500)'
+                            color: colorLogic
                         }}
                     >{props.entityName ? props.entityName : 'No Device'}</p>
                 </div>
@@ -57,19 +62,19 @@ const SwitchCard = (props: any) => {
                     <p
                         className='details-header'
                         style={{
-                            color: 'var(--ha-500)'
+                            color: colorLogic
                         }}
                     >{current ? `${current} A` : 'NA'}</p>
                     <p
                         className='details-header'
                         style={{
-                            color: 'var(--ha-500)'
+                            color: colorLogic
                         }}
                     >{voltage ? `${voltage} V` : 'NA'}</p>
                     <p
                         className='details-header'
                         style={{
-                            color: 'var(--ha-500)'
+                            color: colorLogic
                         }}
                     >{energy ? `${energy} kWH` : 'NA'}</p>
                 </div>

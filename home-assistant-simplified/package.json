@@ -14,10 +14,16 @@
     "deploy": "npx ts-node --esm scripts/deploy.ts"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@hakit/components": "^3.1.4",
     "@hakit/core": "^3.1.4",
+    "@mui/material": "^5.15.16",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "mdi-react": "^9.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "styled-components": "^6.1.9",
     "victory": "^36.9.1"
   },
   "devDependencies": {
