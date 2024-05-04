@@ -16,5 +16,6 @@ const firestore = getFirestore(app)
 
 export {
     app,
-    firestore
+    firestore,
+    firebaseConfig
 }

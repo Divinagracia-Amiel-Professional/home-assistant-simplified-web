@@ -37,6 +37,15 @@ const Dashboard = () => {
 
   addUserToFirebase(currentUserData)
 
+  const devices = Object.keys(entities).filter(key => {
+    return (key.includes('sensor.esphometest') || key.includes('switch.esphometest'))
+  })
+
+  // const device1 = entities[devices[0]]
+  // test Object.entries
+
+  console.log(JSON.stringify(devices))
+
   return <Row
     fullWidth 
     fullHeight

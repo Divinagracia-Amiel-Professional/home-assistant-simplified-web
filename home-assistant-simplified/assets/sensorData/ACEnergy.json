@@ -1,0 +1,2807 @@
+[
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.006,
+    "last_changed": "2024-01-05T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.007,
+    "last_changed": "2024-01-05T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.01,
+    "last_changed": "2024-01-05T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.014,
+    "last_changed": "2024-01-05T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.018,
+    "last_changed": "2024-01-05T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.021,
+    "last_changed": "2024-01-05T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.025,
+    "last_changed": "2024-01-05T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.028,
+    "last_changed": "2024-01-05T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.031,
+    "last_changed": "2024-01-05T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.031,
+    "last_changed": "2024-01-05T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.047,
+    "last_changed": "2024-01-06T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.057,
+    "last_changed": "2024-01-06T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.061,
+    "last_changed": "2024-01-06T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.065,
+    "last_changed": "2024-01-06T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.069,
+    "last_changed": "2024-01-06T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.073,
+    "last_changed": "2024-01-06T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.077,
+    "last_changed": "2024-01-06T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.081,
+    "last_changed": "2024-01-06T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.085,
+    "last_changed": "2024-01-06T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.089,
+    "last_changed": "2024-01-06T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.093,
+    "last_changed": "2024-01-06T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.097,
+    "last_changed": "2024-01-06T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.101,
+    "last_changed": "2024-01-06T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.105,
+    "last_changed": "2024-01-06T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.109,
+    "last_changed": "2024-01-06T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.113,
+    "last_changed": "2024-01-06T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.117,
+    "last_changed": "2024-01-06T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.121,
+    "last_changed": "2024-01-06T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.125,
+    "last_changed": "2024-01-06T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.129,
+    "last_changed": "2024-01-06T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.133,
+    "last_changed": "2024-01-06T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.137,
+    "last_changed": "2024-01-07T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.14,
+    "last_changed": "2024-01-07T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.144,
+    "last_changed": "2024-01-07T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.159,
+    "last_changed": "2024-01-07T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.174,
+    "last_changed": "2024-01-07T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.179,
+    "last_changed": "2024-01-07T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.183,
+    "last_changed": "2024-01-07T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.187,
+    "last_changed": "2024-01-07T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.191,
+    "last_changed": "2024-01-07T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.195,
+    "last_changed": "2024-01-07T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.199,
+    "last_changed": "2024-01-07T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.203,
+    "last_changed": "2024-01-07T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.207,
+    "last_changed": "2024-01-07T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.211,
+    "last_changed": "2024-01-07T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.215,
+    "last_changed": "2024-01-07T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.219,
+    "last_changed": "2024-01-07T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.223,
+    "last_changed": "2024-01-07T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.227,
+    "last_changed": "2024-01-07T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.231,
+    "last_changed": "2024-01-07T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.235,
+    "last_changed": "2024-01-07T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.239,
+    "last_changed": "2024-01-07T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.243,
+    "last_changed": "2024-01-07T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.247,
+    "last_changed": "2024-01-07T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.251,
+    "last_changed": "2024-01-07T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.255,
+    "last_changed": "2024-01-08T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.259,
+    "last_changed": "2024-01-08T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.263,
+    "last_changed": "2024-01-08T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.273,
+    "last_changed": "2024-01-08T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.287,
+    "last_changed": "2024-01-08T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.292,
+    "last_changed": "2024-01-08T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.296,
+    "last_changed": "2024-01-08T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.3,
+    "last_changed": "2024-01-08T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.304,
+    "last_changed": "2024-01-08T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.308,
+    "last_changed": "2024-01-08T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.312,
+    "last_changed": "2024-01-08T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.316,
+    "last_changed": "2024-01-08T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.32,
+    "last_changed": "2024-01-08T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.324,
+    "last_changed": "2024-01-08T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.328,
+    "last_changed": "2024-01-08T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.332,
+    "last_changed": "2024-01-08T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.336,
+    "last_changed": "2024-01-08T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.34,
+    "last_changed": "2024-01-08T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.344,
+    "last_changed": "2024-01-08T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.348,
+    "last_changed": "2024-01-08T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.352,
+    "last_changed": "2024-01-08T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.356,
+    "last_changed": "2024-01-08T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.36,
+    "last_changed": "2024-01-08T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.364,
+    "last_changed": "2024-01-08T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.368,
+    "last_changed": "2024-01-09T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.372,
+    "last_changed": "2024-01-09T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.376,
+    "last_changed": "2024-01-09T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.38,
+    "last_changed": "2024-01-09T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.394,
+    "last_changed": "2024-01-09T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.407,
+    "last_changed": "2024-01-09T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.411,
+    "last_changed": "2024-01-09T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.415,
+    "last_changed": "2024-01-09T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.419,
+    "last_changed": "2024-01-09T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.423,
+    "last_changed": "2024-01-09T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.427,
+    "last_changed": "2024-01-09T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.431,
+    "last_changed": "2024-01-09T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.435,
+    "last_changed": "2024-01-09T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.439,
+    "last_changed": "2024-01-09T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.443,
+    "last_changed": "2024-01-09T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.447,
+    "last_changed": "2024-01-09T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.451,
+    "last_changed": "2024-01-09T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.455,
+    "last_changed": "2024-01-09T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.459,
+    "last_changed": "2024-01-09T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.463,
+    "last_changed": "2024-01-09T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.467,
+    "last_changed": "2024-01-09T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.471,
+    "last_changed": "2024-01-09T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.475,
+    "last_changed": "2024-01-09T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.479,
+    "last_changed": "2024-01-09T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.482,
+    "last_changed": "2024-01-10T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.486,
+    "last_changed": "2024-01-10T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.49,
+    "last_changed": "2024-01-10T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.494,
+    "last_changed": "2024-01-10T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.498,
+    "last_changed": "2024-01-10T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.502,
+    "last_changed": "2024-01-10T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.506,
+    "last_changed": "2024-01-10T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.51,
+    "last_changed": "2024-01-10T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.514,
+    "last_changed": "2024-01-10T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.518,
+    "last_changed": "2024-01-10T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.522,
+    "last_changed": "2024-01-10T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.527,
+    "last_changed": "2024-01-10T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.531,
+    "last_changed": "2024-01-10T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.535,
+    "last_changed": "2024-01-10T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.539,
+    "last_changed": "2024-01-10T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.543,
+    "last_changed": "2024-01-10T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.547,
+    "last_changed": "2024-01-10T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.551,
+    "last_changed": "2024-01-10T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.555,
+    "last_changed": "2024-01-10T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.559,
+    "last_changed": "2024-01-10T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.563,
+    "last_changed": "2024-01-10T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.565,
+    "last_changed": "2024-01-10T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.565,
+    "last_changed": "2024-01-10T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.591,
+    "last_changed": "2024-01-11T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.595,
+    "last_changed": "2024-01-11T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.598,
+    "last_changed": "2024-01-11T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.602,
+    "last_changed": "2024-01-11T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.606,
+    "last_changed": "2024-01-11T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.61,
+    "last_changed": "2024-01-11T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.614,
+    "last_changed": "2024-01-11T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.618,
+    "last_changed": "2024-01-11T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.622,
+    "last_changed": "2024-01-11T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.626,
+    "last_changed": "2024-01-11T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.63,
+    "last_changed": "2024-01-11T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.635,
+    "last_changed": "2024-01-11T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.645,
+    "last_changed": "2024-01-11T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.66,
+    "last_changed": "2024-01-11T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.675,
+    "last_changed": "2024-01-11T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.685,
+    "last_changed": "2024-01-11T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.691,
+    "last_changed": "2024-01-11T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.695,
+    "last_changed": "2024-01-11T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.699,
+    "last_changed": "2024-01-11T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.703,
+    "last_changed": "2024-01-11T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.707,
+    "last_changed": "2024-01-11T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.711,
+    "last_changed": "2024-01-12T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.715,
+    "last_changed": "2024-01-12T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.723,
+    "last_changed": "2024-01-12T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.74,
+    "last_changed": "2024-01-12T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.746,
+    "last_changed": "2024-01-12T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.754,
+    "last_changed": "2024-01-12T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.76,
+    "last_changed": "2024-01-12T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.764,
+    "last_changed": "2024-01-12T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.768,
+    "last_changed": "2024-01-12T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.771,
+    "last_changed": "2024-01-12T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.774,
+    "last_changed": "2024-01-12T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.777,
+    "last_changed": "2024-01-12T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.781,
+    "last_changed": "2024-01-12T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.785,
+    "last_changed": "2024-01-12T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.788,
+    "last_changed": "2024-01-12T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.792,
+    "last_changed": "2024-01-12T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.796,
+    "last_changed": "2024-01-12T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.8,
+    "last_changed": "2024-01-12T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.804,
+    "last_changed": "2024-01-12T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.808,
+    "last_changed": "2024-01-12T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.812,
+    "last_changed": "2024-01-12T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.816,
+    "last_changed": "2024-01-12T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.82,
+    "last_changed": "2024-01-12T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.824,
+    "last_changed": "2024-01-12T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.828,
+    "last_changed": "2024-01-13T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.832,
+    "last_changed": "2024-01-13T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.836,
+    "last_changed": "2024-01-13T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.84,
+    "last_changed": "2024-01-13T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.844,
+    "last_changed": "2024-01-13T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.848,
+    "last_changed": "2024-01-13T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.852,
+    "last_changed": "2024-01-13T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.855,
+    "last_changed": "2024-01-13T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.859,
+    "last_changed": "2024-01-13T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.864,
+    "last_changed": "2024-01-13T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.868,
+    "last_changed": "2024-01-13T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.872,
+    "last_changed": "2024-01-13T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.876,
+    "last_changed": "2024-01-13T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.88,
+    "last_changed": "2024-01-13T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.894,
+    "last_changed": "2024-01-13T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.909,
+    "last_changed": "2024-01-13T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.915,
+    "last_changed": "2024-01-13T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.919,
+    "last_changed": "2024-01-13T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.922,
+    "last_changed": "2024-01-13T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.926,
+    "last_changed": "2024-01-13T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.93,
+    "last_changed": "2024-01-13T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.934,
+    "last_changed": "2024-01-13T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.938,
+    "last_changed": "2024-01-13T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.942,
+    "last_changed": "2024-01-13T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.946,
+    "last_changed": "2024-01-14T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.95,
+    "last_changed": "2024-01-14T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.954,
+    "last_changed": "2024-01-14T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.958,
+    "last_changed": "2024-01-14T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.962,
+    "last_changed": "2024-01-14T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.966,
+    "last_changed": "2024-01-14T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.97,
+    "last_changed": "2024-01-14T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.974,
+    "last_changed": "2024-01-14T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.977,
+    "last_changed": "2024-01-14T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.981,
+    "last_changed": "2024-01-14T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.985,
+    "last_changed": "2024-01-14T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.989,
+    "last_changed": "2024-01-14T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.993,
+    "last_changed": "2024-01-14T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.997,
+    "last_changed": "2024-01-14T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.001,
+    "last_changed": "2024-01-14T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.005,
+    "last_changed": "2024-01-14T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.009,
+    "last_changed": "2024-01-14T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.013,
+    "last_changed": "2024-01-14T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.017,
+    "last_changed": "2024-01-14T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.021,
+    "last_changed": "2024-01-14T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.025,
+    "last_changed": "2024-01-14T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.029,
+    "last_changed": "2024-01-14T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.033,
+    "last_changed": "2024-01-14T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.037,
+    "last_changed": "2024-01-14T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.041,
+    "last_changed": "2024-01-15T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.045,
+    "last_changed": "2024-01-15T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.049,
+    "last_changed": "2024-01-15T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.053,
+    "last_changed": "2024-01-15T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.06,
+    "last_changed": "2024-01-15T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.073,
+    "last_changed": "2024-01-15T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.081,
+    "last_changed": "2024-01-15T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.085,
+    "last_changed": "2024-01-15T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.089,
+    "last_changed": "2024-01-15T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.093,
+    "last_changed": "2024-01-15T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.097,
+    "last_changed": "2024-01-15T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.101,
+    "last_changed": "2024-01-15T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.105,
+    "last_changed": "2024-01-15T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.109,
+    "last_changed": "2024-01-15T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.113,
+    "last_changed": "2024-01-15T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.117,
+    "last_changed": "2024-01-15T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.121,
+    "last_changed": "2024-01-15T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.125,
+    "last_changed": "2024-01-15T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.129,
+    "last_changed": "2024-01-15T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.133,
+    "last_changed": "2024-01-15T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.137,
+    "last_changed": "2024-01-15T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.141,
+    "last_changed": "2024-01-15T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.145,
+    "last_changed": "2024-01-15T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.149,
+    "last_changed": "2024-01-15T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.153,
+    "last_changed": "2024-01-16T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.156,
+    "last_changed": "2024-01-16T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.16,
+    "last_changed": "2024-01-16T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.164,
+    "last_changed": "2024-01-16T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.168,
+    "last_changed": "2024-01-16T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.172,
+    "last_changed": "2024-01-16T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.176,
+    "last_changed": "2024-01-16T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.189,
+    "last_changed": "2024-01-16T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.199,
+    "last_changed": "2024-01-16T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.204,
+    "last_changed": "2024-01-16T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.208,
+    "last_changed": "2024-01-16T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.212,
+    "last_changed": "2024-01-16T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.216,
+    "last_changed": "2024-01-16T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.22,
+    "last_changed": "2024-01-16T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.224,
+    "last_changed": "2024-01-16T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.228,
+    "last_changed": "2024-01-16T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.232,
+    "last_changed": "2024-01-16T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.236,
+    "last_changed": "2024-01-16T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.24,
+    "last_changed": "2024-01-16T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.244,
+    "last_changed": "2024-01-16T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.248,
+    "last_changed": "2024-01-16T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.252,
+    "last_changed": "2024-01-16T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.256,
+    "last_changed": "2024-01-16T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.259,
+    "last_changed": "2024-01-16T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.263,
+    "last_changed": "2024-01-17T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.267,
+    "last_changed": "2024-01-17T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.271,
+    "last_changed": "2024-01-17T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.275,
+    "last_changed": "2024-01-17T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.279,
+    "last_changed": "2024-01-17T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.283,
+    "last_changed": "2024-01-17T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.287,
+    "last_changed": "2024-01-17T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.291,
+    "last_changed": "2024-01-17T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.295,
+    "last_changed": "2024-01-17T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.299,
+    "last_changed": "2024-01-17T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.303,
+    "last_changed": "2024-01-17T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.307,
+    "last_changed": "2024-01-17T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.311,
+    "last_changed": "2024-01-17T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.315,
+    "last_changed": "2024-01-17T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.319,
+    "last_changed": "2024-01-17T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.323,
+    "last_changed": "2024-01-17T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.327,
+    "last_changed": "2024-01-17T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.331,
+    "last_changed": "2024-01-17T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.335,
+    "last_changed": "2024-01-17T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.339,
+    "last_changed": "2024-01-17T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.343,
+    "last_changed": "2024-01-17T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.347,
+    "last_changed": "2024-01-17T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.351,
+    "last_changed": "2024-01-17T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.355,
+    "last_changed": "2024-01-17T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.359,
+    "last_changed": "2024-01-18T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.363,
+    "last_changed": "2024-01-18T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.367,
+    "last_changed": "2024-01-18T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.371,
+    "last_changed": "2024-01-18T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.375,
+    "last_changed": "2024-01-18T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.378,
+    "last_changed": "2024-01-18T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.382,
+    "last_changed": "2024-01-18T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.386,
+    "last_changed": "2024-01-18T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.39,
+    "last_changed": "2024-01-18T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.394,
+    "last_changed": "2024-01-18T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.398,
+    "last_changed": "2024-01-18T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.402,
+    "last_changed": "2024-01-18T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.406,
+    "last_changed": "2024-01-18T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.41,
+    "last_changed": "2024-01-18T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.414,
+    "last_changed": "2024-01-18T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.418,
+    "last_changed": "2024-01-18T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.422,
+    "last_changed": "2024-01-18T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.426,
+    "last_changed": "2024-01-18T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.43,
+    "last_changed": "2024-01-18T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.434,
+    "last_changed": "2024-01-18T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.438,
+    "last_changed": "2024-01-18T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.442,
+    "last_changed": "2024-01-18T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.446,
+    "last_changed": "2024-01-18T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.45,
+    "last_changed": "2024-01-18T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.454,
+    "last_changed": "2024-01-19T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.458,
+    "last_changed": "2024-01-19T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.47,
+    "last_changed": "2024-01-19T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.526,
+    "last_changed": "2024-01-19T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.578,
+    "last_changed": "2024-01-19T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.604,
+    "last_changed": "2024-01-19T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.646,
+    "last_changed": "2024-01-19T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.69,
+    "last_changed": "2024-01-19T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.707,
+    "last_changed": "2024-01-19T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.752,
+    "last_changed": "2024-01-19T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.799,
+    "last_changed": "2024-01-19T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.811,
+    "last_changed": "2024-01-19T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.815,
+    "last_changed": "2024-01-19T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.818,
+    "last_changed": "2024-01-19T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.822,
+    "last_changed": "2024-01-19T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.826,
+    "last_changed": "2024-01-19T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.83,
+    "last_changed": "2024-01-19T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.834,
+    "last_changed": "2024-01-19T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.838,
+    "last_changed": "2024-01-19T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.873,
+    "last_changed": "2024-01-20T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.878,
+    "last_changed": "2024-01-20T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.882,
+    "last_changed": "2024-01-20T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.886,
+    "last_changed": "2024-01-20T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.891,
+    "last_changed": "2024-01-20T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.896,
+    "last_changed": "2024-01-20T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.903,
+    "last_changed": "2024-01-20T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.909,
+    "last_changed": "2024-01-20T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.913,
+    "last_changed": "2024-01-20T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.917,
+    "last_changed": "2024-01-20T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.921,
+    "last_changed": "2024-01-20T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.925,
+    "last_changed": "2024-01-20T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.929,
+    "last_changed": "2024-01-20T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.933,
+    "last_changed": "2024-01-20T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.937,
+    "last_changed": "2024-01-20T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.941,
+    "last_changed": "2024-01-20T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.945,
+    "last_changed": "2024-01-20T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.948,
+    "last_changed": "2024-01-20T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.952,
+    "last_changed": "2024-01-20T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.956,
+    "last_changed": "2024-01-20T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.96,
+    "last_changed": "2024-01-20T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.964,
+    "last_changed": "2024-01-21T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.968,
+    "last_changed": "2024-01-21T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.972,
+    "last_changed": "2024-01-21T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.976,
+    "last_changed": "2024-01-21T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.98,
+    "last_changed": "2024-01-21T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.984,
+    "last_changed": "2024-01-21T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.988,
+    "last_changed": "2024-01-21T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.992,
+    "last_changed": "2024-01-21T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.996,
+    "last_changed": "2024-01-21T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2,
+    "last_changed": "2024-01-21T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.004,
+    "last_changed": "2024-01-21T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.075,
+    "last_changed": "2024-01-21T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.177,
+    "last_changed": "2024-01-21T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.272,
+    "last_changed": "2024-01-21T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.362,
+    "last_changed": "2024-01-21T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.452,
+    "last_changed": "2024-01-21T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.535,
+    "last_changed": "2024-01-21T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.625,
+    "last_changed": "2024-01-21T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.63,
+    "last_changed": "2024-01-21T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.634,
+    "last_changed": "2024-01-21T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.638,
+    "last_changed": "2024-01-21T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.643,
+    "last_changed": "2024-01-21T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.647,
+    "last_changed": "2024-01-21T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.652,
+    "last_changed": "2024-01-21T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.656,
+    "last_changed": "2024-01-22T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.66,
+    "last_changed": "2024-01-22T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.68,
+    "last_changed": "2024-01-22T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.711,
+    "last_changed": "2024-01-22T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.719,
+    "last_changed": "2024-01-22T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.724,
+    "last_changed": "2024-01-22T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.728,
+    "last_changed": "2024-01-22T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.733,
+    "last_changed": "2024-01-22T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.737,
+    "last_changed": "2024-01-22T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.742,
+    "last_changed": "2024-01-22T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.747,
+    "last_changed": "2024-01-22T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.751,
+    "last_changed": "2024-01-22T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.756,
+    "last_changed": "2024-01-22T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.761,
+    "last_changed": "2024-01-22T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.767,
+    "last_changed": "2024-01-22T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.785,
+    "last_changed": "2024-01-22T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.793,
+    "last_changed": "2024-01-22T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.798,
+    "last_changed": "2024-01-22T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.802,
+    "last_changed": "2024-01-22T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.807,
+    "last_changed": "2024-01-22T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.811,
+    "last_changed": "2024-01-22T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.816,
+    "last_changed": "2024-01-22T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.82,
+    "last_changed": "2024-01-22T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.825,
+    "last_changed": "2024-01-22T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.829,
+    "last_changed": "2024-01-23T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.834,
+    "last_changed": "2024-01-23T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.855,
+    "last_changed": "2024-01-23T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.955,
+    "last_changed": "2024-01-23T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.05,
+    "last_changed": "2024-01-23T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.152,
+    "last_changed": "2024-01-23T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.212,
+    "last_changed": "2024-01-23T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.223,
+    "last_changed": "2024-01-23T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.223,
+    "last_changed": "2024-01-23T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.562,
+    "last_changed": "2024-01-26T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.566,
+    "last_changed": "2024-01-26T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.571,
+    "last_changed": "2024-01-26T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.576,
+    "last_changed": "2024-01-26T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.581,
+    "last_changed": "2024-01-26T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.581,
+    "last_changed": "2024-01-26T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.693,
+    "last_changed": "2024-01-26T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.698,
+    "last_changed": "2024-01-26T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.702,
+    "last_changed": "2024-01-26T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.706,
+    "last_changed": "2024-01-27T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.711,
+    "last_changed": "2024-01-27T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.715,
+    "last_changed": "2024-01-27T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.729,
+    "last_changed": "2024-01-27T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.741,
+    "last_changed": "2024-01-27T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.746,
+    "last_changed": "2024-01-27T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.75,
+    "last_changed": "2024-01-27T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.755,
+    "last_changed": "2024-01-27T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.765,
+    "last_changed": "2024-01-27T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.769,
+    "last_changed": "2024-01-27T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.773,
+    "last_changed": "2024-01-27T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.778,
+    "last_changed": "2024-01-27T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.782,
+    "last_changed": "2024-01-27T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.786,
+    "last_changed": "2024-01-27T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.786,
+    "last_changed": "2024-01-27T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.886,
+    "last_changed": "2024-01-28T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.89,
+    "last_changed": "2024-01-28T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.894,
+    "last_changed": "2024-01-28T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.899,
+    "last_changed": "2024-01-28T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.905,
+    "last_changed": "2024-01-28T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.909,
+    "last_changed": "2024-01-28T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.914,
+    "last_changed": "2024-01-28T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.918,
+    "last_changed": "2024-01-28T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.923,
+    "last_changed": "2024-01-28T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.927,
+    "last_changed": "2024-01-28T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.931,
+    "last_changed": "2024-01-28T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.936,
+    "last_changed": "2024-01-28T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.94,
+    "last_changed": "2024-01-28T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.945,
+    "last_changed": "2024-01-28T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.949,
+    "last_changed": "2024-01-28T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.953,
+    "last_changed": "2024-01-28T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.958,
+    "last_changed": "2024-01-28T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.962,
+    "last_changed": "2024-01-29T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.967,
+    "last_changed": "2024-01-29T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.971,
+    "last_changed": "2024-01-29T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.976,
+    "last_changed": "2024-01-29T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.978,
+    "last_changed": "2024-01-29T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.015,
+    "last_changed": "2024-01-29T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.02,
+    "last_changed": "2024-01-29T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.089,
+    "last_changed": "2024-01-29T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.268,
+    "last_changed": "2024-01-29T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.283,
+    "last_changed": "2024-01-29T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.299,
+    "last_changed": "2024-01-29T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.313,
+    "last_changed": "2024-01-29T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.321,
+    "last_changed": "2024-01-29T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.327,
+    "last_changed": "2024-01-29T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.331,
+    "last_changed": "2024-01-29T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.336,
+    "last_changed": "2024-01-29T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.34,
+    "last_changed": "2024-01-30T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.345,
+    "last_changed": "2024-01-30T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.349,
+    "last_changed": "2024-01-30T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.354,
+    "last_changed": "2024-01-30T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.358,
+    "last_changed": "2024-01-30T04:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.363,
+    "last_changed": "2024-01-30T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.367,
+    "last_changed": "2024-01-30T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.372,
+    "last_changed": "2024-01-30T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.376,
+    "last_changed": "2024-01-30T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.381,
+    "last_changed": "2024-01-30T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.385,
+    "last_changed": "2024-01-30T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.389,
+    "last_changed": "2024-01-30T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.394,
+    "last_changed": "2024-01-30T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.398,
+    "last_changed": "2024-01-30T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.403,
+    "last_changed": "2024-01-30T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.407,
+    "last_changed": "2024-01-30T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.413,
+    "last_changed": "2024-01-30T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.417,
+    "last_changed": "2024-01-30T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.422,
+    "last_changed": "2024-01-30T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.426,
+    "last_changed": "2024-01-30T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.43,
+    "last_changed": "2024-01-30T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.435,
+    "last_changed": "2024-01-30T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.439,
+    "last_changed": "2024-01-30T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.444,
+    "last_changed": "2024-01-30T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.448,
+    "last_changed": "2024-01-31T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.449,
+    "last_changed": "2024-01-31T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.449,
+    "last_changed": "2024-01-31T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.45,
+    "last_changed": "2024-03-17T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.45,
+    "last_changed": "2024-03-17T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.469,
+    "last_changed": "2024-03-19T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.469,
+    "last_changed": "2024-03-19T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0,
+    "last_changed": "2024-04-01T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0,
+    "last_changed": "2024-04-01T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 0.506,
+    "last_changed": "2024-04-03T05:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.206,
+    "last_changed": "2024-04-03T06:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 1.9,
+    "last_changed": "2024-04-03T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 2.581,
+    "last_changed": "2024-04-03T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.206,
+    "last_changed": "2024-04-03T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 3.828,
+    "last_changed": "2024-04-03T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.479,
+    "last_changed": "2024-04-03T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.939,
+    "last_changed": "2024-04-03T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 4.939,
+    "last_changed": "2024-04-03T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 5.221,
+    "last_changed": "2024-04-08T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 5.889,
+    "last_changed": "2024-04-08T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 6.542,
+    "last_changed": "2024-04-08T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 7.184,
+    "last_changed": "2024-04-08T14:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 7.818,
+    "last_changed": "2024-04-08T15:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 8.445,
+    "last_changed": "2024-04-08T16:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 9.063,
+    "last_changed": "2024-04-08T17:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 9.682,
+    "last_changed": "2024-04-08T18:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 10.293,
+    "last_changed": "2024-04-08T19:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 10.843,
+    "last_changed": "2024-04-08T20:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 11.381,
+    "last_changed": "2024-04-08T21:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 11.843,
+    "last_changed": "2024-04-08T22:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 12.345,
+    "last_changed": "2024-04-08T23:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 12.882,
+    "last_changed": "2024-04-09T00:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 13.481,
+    "last_changed": "2024-04-09T01:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 13.516,
+    "last_changed": "2024-04-09T02:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 13.516,
+    "last_changed": "2024-04-09T03:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 14.108,
+    "last_changed": "2024-04-19T07:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 14.812,
+    "last_changed": "2024-04-19T08:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 15.505,
+    "last_changed": "2024-04-19T09:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.183,
+    "last_changed": "2024-04-19T10:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.85,
+    "last_changed": "2024-04-19T11:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-19T12:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-19T13:00:00.000Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-04-24T04:03:59.763Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-24T04:07:04.705Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-04-24T04:11:19.317Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-24T04:13:11.573Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-04-24T04:22:00.868Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-24T04:22:24.284Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-04-24T09:30:22.588Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-24T09:30:23.045Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-04-25T12:07:29.311Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-25T12:15:09.190Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-04-25T12:20:07.642Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-25T12:20:10.338Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-04-29T11:43:42.812Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-29T11:43:52.613Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-04-30T06:18:26.046Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-04-30T06:34:28.512Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-05-01T14:18:59.588Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-05-01T14:19:00.039Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-05-03T03:30:10.420Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-05-03T03:30:10.907Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-05-03T10:42:59.130Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-05-03T10:42:59.687Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-05-04T06:51:18.381Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-05-04T06:51:18.937Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": "unavailable",
+    "last_changed": "2024-05-04T10:44:44.910Z"
+  },
+  {
+    "entity_id": "sensor.esphometest_1_energy",
+    "state": 16.866,
+    "last_changed": "2024-05-04T10:44:53.850Z"
+  }
+]
