@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["sync-types.ts", ".d.ts", "src"],
+  "include": ["sync-types.ts", ".d.ts", "src", "scripts/firebase.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

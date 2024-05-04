@@ -54,8 +54,11 @@ const CallApiExample = () => {
 ///history/period?filter_entity_id=sensor.temperature
 ///history/period/2023-09-04T00:00:00+02:00?filter_entity_id=sensor.temperature,sensor.kitchen_temperature&minimal_response
 ///history/period/2024-02-01T00:00:00+08:00?end_time=2024-03-31T00:00:00+08:00&filter_entity_id=sensor.esphometest_1_power&minimal_response
-//api request: /history/period/2021-09-04T00%3A00%3A00%2B02%3A00?end_time=2023-09-04T00%3A00%3A00%2B02%3A00&filter_entity_id=sensor.temperature
+//api request: /history/period/2021-09-04T00%3A00%3A00%2B02%3A00?end_time=2023-09-04T00%3A00%3A00%2B02%3A00&filter_entity_id=sensor.temperature&minimal_response
 // id: sensor.esphometest_1_power
+
+// /history/period/2024-02-00T00%3A00%3A00%2B08%3A00?end_time=2024-03-00T00%3A00%3A00%2B08%3A00&filter_entity_id=${name}$minimal_response
+// /history/period/2024-02-10T00:00:00+08:00?filter_entity_id=${name}&end_time=2024-03-10T00%3A00%3A00%2B08%3A00&minimal_response
 
 
 const useSensorHistory = (sensorName: any) => {
@@ -64,7 +67,7 @@ const useSensorHistory = (sensorName: any) => {
     const name = sensorName;
     const retrieveSensorHistory = useCallback(() => {
       (async() => {
-        const response = await callApi<CalendarEvent[]>(`/history/period/2024-02-01T00:00:00+08:00?&filter_entity_id=${name}&minimal_response`);
+        const response = await callApi<any>(`/history/period/2024-01-12T00:00:00+00:00?filter_entity_id=${name}&end_time=2024-05-02T00%3A00%3A00%2B00%3A00`);
         setRes(response);
       })()
     }, [callApi]);

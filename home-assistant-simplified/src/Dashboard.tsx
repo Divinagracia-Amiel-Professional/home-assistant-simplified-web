@@ -5,7 +5,7 @@ import {
   ButtonCard, 
   Row, 
   SidebarCard, 
-  AreaCard 
+  AreaCard
 } from '@hakit/components';
 import { useState, useEffect } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
@@ -13,17 +13,29 @@ import useSensorData from '../scripts/custom-hooks/useSensorData'
 import { CallApiExample, useSensorHistory } from '../scripts/custom-hooks/apiHooks'
 import groupByMonth from '../scripts/functions/groupByDate';
 import SideBar from './components/sidebar';
+import addUserToFirebase from '../scripts/functions/addUserToFirebase'
 
 const Dashboard = () => {
   const [ efanEnabled, setEfanEnabled ] = useState<boolean>(false)
-  const { getAllEntities, useStore } = useHass();
+  const { getAllEntities, useStore, getUser } = useHass();
+  const [ user, setUser ] = useState<HassUser | null>(null)
   const entities = useStore(store => store.entities);
   const { data: sensorData } = useSensorData()
 
-  // const sensor2volt = sensorData[1].voltage.entityHistory[sensorData[1].voltage.entityHistory.length - 1]
-  // const sensor2amp = sensorData[1].current.entityHistory[sensorData[1].current.entityHistory.length - 1]
-  // const date = new Date(sensor2volt?.lu * 1000)
-  const grouped = groupByMonth(sensorData)
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await getUser();
+      setUser(user);
+    }
+    fetchUser();
+  }, []) 
+
+  const currentUserData = {
+    id: user?.id,
+    name: user?.name
+  }
+
+  addUserToFirebase(currentUserData)
 
   return <Row
     fullWidth 
@@ -51,7 +63,7 @@ const Dashboard = () => {
 }
 
 const EnergyUsageGraph = () => {
-  const sensorName = "sensor.esphometest_1_power"
+  // const sensorName = "sensor.esphometest_1_energy2"
   // const sensorData = useSensorHistory(sensorName)
 
   // console.log(sensorData)
