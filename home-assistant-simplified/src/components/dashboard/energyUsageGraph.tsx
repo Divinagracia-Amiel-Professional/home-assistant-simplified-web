@@ -9,6 +9,14 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Efan } from '../../../constants/icons';
+import { 
+    VictoryChart,
+    VictoryVoronoiContainer,
+    VictoryLabel,
+    VictoryStack,
+    VictoryHistogram,
+    VictoryAxis 
+} from 'victory';
 
 const customStyleLabel = {
     '.MuiFormControlLabel-label': {
