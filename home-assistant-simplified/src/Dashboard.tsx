@@ -17,6 +17,7 @@ import addUserToFirebase from '../scripts/functions/addUserToFirebase'
 import DevicesCards from './components/dashboard/devicesCards';
 import useWindowDimensions from '../scripts/custom-hooks/useWindowDimensions'
 import EnergyUsageSummary from './components/dashboard/energyUsageSummary';
+import fetchSQLiteDB from '../scripts/custom-hooks/fetch-sqlite-db'
 
 const Dashboard = () => {
   const [ efanEnabled, setEfanEnabled ] = useState<boolean>(false)
@@ -49,13 +50,17 @@ const Dashboard = () => {
   // test Object.entries
   const dimensionLogic = windowDimensions.width >= 1000 ? 15 : 0
 
+  // const sqlDB = fetchSQLiteDB()
+
+  // console.log(sqlDB)
+
   return <Row
     fullWidth 
     fullHeight
     wrap='nowrap'
     style={{
       overflow: 'hidden',
-      backgroundColor: 'var(--ha-S100)'
+      backgroundColor: 'var(--ha-S150)'
     }}
     >
       <SideBar />
@@ -66,7 +71,8 @@ const Dashboard = () => {
           marginTop: 50,
           marginLeft: dimensionLogic,
           marginRight: dimensionLogic,
-          overflow: 'hidden'
+          overflow: 'hidden',
+          justifyContent: 'flex-end'
         }}
         // justifyContent='flex-end'
       >

@@ -188,6 +188,46 @@
     height: 35%;
 }
 
+.energy-usage-summary-title{
+    display: flex;
+    justify-content: flex-start;
+    align-self: stretch;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--ha-900);
+    padding-left: 30px;
+}
+
+.energy-usage-summary-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    gap: 20px;
+
+    height: 50%;
+}
+
+.energy-usage-summary-section{
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+    justify-content: flex-start;
+    align-items: center;
+    align-self: stretch;
+    padding: 15px;
+    padding-bottom: 50px;
+
+    background-color: var(--ha-S50);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.energy-usage-graph{
+
+}
+
 @media only screen and (max-width: 900px) {
     .appliance-card{
         width: 45vw;

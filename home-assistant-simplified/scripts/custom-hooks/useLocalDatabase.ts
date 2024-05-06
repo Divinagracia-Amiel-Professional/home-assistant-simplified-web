@@ -10,8 +10,6 @@ const useLocalDatabase = (props: UseAllHistoryParams) => {
         Monitor: JSON.parse(JSON.stringify(MonitorEnergy)).default,
         EFan: JSON.parse(JSON.stringify(EFanEnergy)).default
     }
-
-    console.log(parsed)
 }
 
 export default useLocalDatabase
