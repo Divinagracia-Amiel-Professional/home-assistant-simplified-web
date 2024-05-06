@@ -13,11 +13,14 @@ import useWindowDimensions from "../../../scripts/custom-hooks/useWindowDimensio
 import EnergyUsageGraph from "./energyUsageGraph";
 
 const EnergyUsageSummary = (props: any) => {
-
+    const utc = new Date(Date.now())
+    const currentYear = utc.getFullYear()
     
     return(
         <div>
-            <EnergyUsageGraph user={props.user} historyParams={{}}/>
+            <EnergyUsageGraph user={props.user} type={'summary'}/>
+            <p>{currentYear}</p>
+
         </div>
     )
 }
