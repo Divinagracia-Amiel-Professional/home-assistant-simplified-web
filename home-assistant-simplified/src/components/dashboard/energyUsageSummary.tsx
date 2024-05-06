@@ -17,10 +17,18 @@ const EnergyUsageSummary = (props: any) => {
     const currentYear = utc.getFullYear()
     
     return(
-        <div>
-            <EnergyUsageGraph user={props.user} type={'summary'}/>
-            <p>{currentYear}</p>
-
+        <div
+            className="energy-usage-summary-container"
+        >
+            <p
+                className="energy-usage-summary-title"
+            >Energy Usage Summary</p>
+            <div
+                className="energy-usage-summary-section"
+            >
+                <EnergyUsageGraph user={props.user} type={'summary'}/>
+                <p>{currentYear}</p>
+            </div>
         </div>
     )
 }

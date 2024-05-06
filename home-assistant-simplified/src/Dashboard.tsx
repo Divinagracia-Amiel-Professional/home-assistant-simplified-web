@@ -66,7 +66,8 @@ const Dashboard = () => {
           marginTop: 50,
           marginLeft: dimensionLogic,
           marginRight: dimensionLogic,
-          overflow: 'hidden'
+          overflow: 'hidden',
+          justifyContent: 'flex-end'
         }}
         // justifyContent='flex-end'
       >
