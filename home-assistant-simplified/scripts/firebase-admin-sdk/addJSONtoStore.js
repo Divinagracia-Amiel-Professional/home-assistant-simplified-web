@@ -21,10 +21,15 @@ const promises = [];
 const dataArray = data.default;
 
 dataArray.forEach(d => {
-     promises.push(admin.firestore().collection('users').doc('FzZnmzdJNkBZSOcJLkgp').collection('devices').doc('Og05fJCdZcVcbmVs7M1V').collection('energy').add(d));
+     promises.push(admin.firestore().collection('users').doc('8a5552df72bb418283c3a61853a5bf93').collection('devices').doc('eprP3QlOyrzE9RPnqjv2').collection('energy').add(d));
 })
 Promise.all(promises);
 
 
-//THIS CODE IS TO MANUALLY INPUT CSV 
+// THIS CODE IS TO MANUALLY INPUT JSON to Firestore using firebase-sdk
+// 5V7YQt8SnQ7wvPqUoIZZ AC
+// DKbNzr3LlBaD6j8VX0QA Efan
+// KSqbShozwXG0e4QShTU2 Monitor
+// eprP3QlOyrzE9RPnqjv2 PC
+// node addJSONtoStore
 

@@ -14,6 +14,9 @@ import { CallApiExample, useSensorHistory } from '../scripts/custom-hooks/apiHoo
 import groupByMonth from '../scripts/functions/groupByDate';
 import SideBar from './components/sidebar';
 import addUserToFirebase from '../scripts/functions/addUserToFirebase'
+import DevicesCards from './components/dashboard/devicesCards';
+import useWindowDimensions from '../scripts/custom-hooks/useWindowDimensions'
+import EnergyUsageSummary from './components/dashboard/energyUsageSummary';
 
 const Dashboard = () => {
   const [ efanEnabled, setEfanEnabled ] = useState<boolean>(false)
@@ -21,6 +24,7 @@ const Dashboard = () => {
   const [ user, setUser ] = useState<HassUser | null>(null)
   const entities = useStore(store => store.entities);
   const { data: sensorData } = useSensorData()
+  const windowDimensions = useWindowDimensions()
 
   useEffect(() => {
     async function fetchUser() {
@@ -43,13 +47,16 @@ const Dashboard = () => {
 
   // const device1 = entities[devices[0]]
   // test Object.entries
-
-  console.log(JSON.stringify(devices))
+  const dimensionLogic = windowDimensions.width >= 1000 ? 15 : 0
 
   return <Row
     fullWidth 
     fullHeight
     wrap='nowrap'
+    style={{
+      overflow: 'hidden',
+      backgroundColor: 'var(--ha-S100)'
+    }}
     >
       <SideBar />
       <Column
@@ -57,28 +64,16 @@ const Dashboard = () => {
         fullHeight
         style={{
           marginTop: 50,
-          marginLeft: 15,
-          marginRight: 15
+          marginLeft: dimensionLogic,
+          marginRight: dimensionLogic,
+          overflow: 'hidden'
         }}
+        // justifyContent='flex-end'
       >
-        <p>You have <b>{Object.keys(getAllEntities()).length}</b> entities to start automating with! Have fun!</p>
-        <p>Efan is {JSON.stringify(efanEnabled)} 2</p>
-        {/* <p>Sensor from history {JSON.stringify(sensor2volt?.s)}V, {JSON.stringify(sensor2amp?.s)}A</p>
-        <p>Sensor Date: {date.toString() !== "Invalid Date" ? date.toString().slice(4,15) : "...Loading" }</p> */}
-        {CallApiExample()}
-        <EnergyUsageGraph />
+        <DevicesCards />
+        <EnergyUsageSummary user={currentUserData.id}/>
       </Column>
   </Row> 
-}
-
-const EnergyUsageGraph = () => {
-  // const sensorName = "sensor.esphometest_1_energy2"
-  // const sensorData = useSensorHistory(sensorName)
-
-  // console.log(sensorData)
-  return <>
-  
-  </>
 }
 
 export default Dashboard
