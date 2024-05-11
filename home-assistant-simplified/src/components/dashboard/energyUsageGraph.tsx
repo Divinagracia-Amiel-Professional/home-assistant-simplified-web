@@ -32,6 +32,18 @@ const customStyleCheck = {
     },
 }
 
+//style of axis
+const sharedAxisStyles = {
+    tickLabels: {
+      fontSize: 13
+    },
+    axisLabel: {
+      padding: 39,
+      fontSize: 13,
+      fontStyle: "italic"
+    }
+  };
+
 const EnergyUsageGraph = (props: any) => {
     const [ historyParams, setHistoryParams ] = useState<UseHistoryParams>()
     const [ selected, setSelected ] = useState({
@@ -48,16 +60,16 @@ const EnergyUsageGraph = (props: any) => {
         }))
     }
 
-    const defaultParams: UseAllHistoryParams = {
+    const params: UseAllHistoryParams = {
         userId: props.user,
-        startTime: '2024-04-25T02:00:00.000Z',
-        endTime: '2024-04-30T02:00:00.000Z',
+        startTime: '2024-04-17T00:00:00.000+08:00',
+        endTime: '2024-04-20T00:00:00.000+08:00',
     }
    
     // const historyData = useAllSensorHistory(defaultParams)
     // console.log(historyData)
 
-    useLocalDatabase()
+    const data = useLocalDatabase(params)
 
     return <div
         className='energy-usage-graph'
@@ -72,6 +84,7 @@ const EnergyUsageGraph = (props: any) => {
             <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.Efan} onChange={() => { handleSelected('Efan') }}/>} label="Efan" />
             <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.PC} onChange={() => { handleSelected('PC') }}/>} label="PC" />
             <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.Monitor} onChange={() => { handleSelected('Monitor') }}/>} label="Monitor" />
+            <p>{data.type}</p>
         </FormGroup>
     </div>
 }

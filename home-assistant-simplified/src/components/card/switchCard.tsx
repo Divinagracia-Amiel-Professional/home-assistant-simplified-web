@@ -31,6 +31,15 @@ const SwitchCard = (props: any) => {
 
     const colorLogic = isSocketOn ? 'var(--ha-500)' : 'var(--ha-S500)'
 
+    const dataLogic = (data: any, unit: string) => {
+        if(data === 'unavailable' || data === null || data === undefined){
+            return 'No Data'
+        }
+        else{
+            return `${data} ${unit}`
+        }
+    }
+
     return <>
         <div
             className='switch-card'
@@ -64,19 +73,19 @@ const SwitchCard = (props: any) => {
                         style={{
                             color: colorLogic
                         }}
-                    >{current ? `${current} A` : 'NA'}</p>
+                    >{dataLogic(current, 'A')}</p>
                     <p
                         className='details-header'
                         style={{
                             color: colorLogic
                         }}
-                    >{voltage ? `${voltage} V` : 'NA'}</p>
+                    >{dataLogic(voltage, 'V')}</p>
                     <p
                         className='details-header'
                         style={{
                             color: colorLogic
                         }}
-                    >{energy ? `${energy} kWH` : 'NA'}</p>
+                    >{dataLogic(energy, 'kwH')}</p>
                 </div>
             </div>
             <div

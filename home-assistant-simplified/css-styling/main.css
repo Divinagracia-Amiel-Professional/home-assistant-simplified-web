@@ -134,7 +134,7 @@
     padding-bottom: 35px;
 
     border-radius: 25px;
-    width: 25vw;
+    min-width: 25vw;
 }
 
 .switches-group{
@@ -159,7 +159,7 @@
     padding-top: 20px;
     padding-bottom: 20px;
     height: 100%;
-    width: 15%;
+    min-width: 15%;
 
     border-radius: 25px;
 }
@@ -233,17 +233,18 @@
         width: 45vw;
     
         border-radius: 25px;
+        /* flex: 1 0 0 */
     }
 
     .switch-card{
         flex: 1 0 0;
-        width: auto;
+        min-width: auto;
     }
 
     .device-card{
         flex: 0 0 auto;
         height: 100%;
-        width: 40%;
+        min-width: 40%;
     
         background-color: red;
         border-radius: 25px;
@@ -264,14 +265,14 @@
 
 @media only screen and (max-width: 600px) {
     .appliance-card{
-        width: 185px;
+        min-width: 185px;
     
         border-radius: 25px;
     }
 
     .switch-card{
         flex: 1 0 0;
-        width: auto;
+        min-width: auto;
     }   
 
     .switches-group{
@@ -281,20 +282,20 @@
 
 @media only screen and (max-width: 390px) {
     .appliance-card{
-        width: 100vw;
+        min-width: 100vw;
     
         border-radius: 25px;
     }
 
     .switch-card{
         flex: 1 0 0;
-        width: auto;
+        min-width: auto;
     }
 
     .device-card{
         flex: 0 0 auto;
         height: 100%;
-        width: 40%;
+        min-width: 40%;
     
         background-color: red;
         border-radius: 25px;
