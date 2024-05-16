@@ -62,8 +62,8 @@ const EnergyUsageGraph = (props: any) => {
 
     const params: UseAllHistoryParams = {
         userId: props.user,
-        startTime: '2024-04-17T00:00:00.000+08:00',
-        endTime: '2024-04-20T00:00:00.000+08:00',
+        startTime: '2024-04-01T00:00:00.000+08:00',
+        endTime: '2024-05-20T00:00:00.000+08:00',
     }
    
     // const historyData = useAllSensorHistory(defaultParams)
