@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { firestore } from '../firebase'
 import { addDoc, collection, getDoc, getDocs, doc, setDoc, where, query } from "@firebase/firestore"
 
-interface UseAllHistoryParams {
+export interface UseAllHistoryParams {
     userId: string,
     startTime: string,
     endTime: string,
