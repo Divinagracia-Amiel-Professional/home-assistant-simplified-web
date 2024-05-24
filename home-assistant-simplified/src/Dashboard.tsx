@@ -17,6 +17,7 @@ import addUserToFirebase from '../scripts/functions/addUserToFirebase'
 import DevicesCards from './components/dashboard/devicesCards';
 import useWindowDimensions from '../scripts/custom-hooks/useWindowDimensions'
 import EnergyUsageSummary from './components/dashboard/energyUsageSummary';
+import FixedBottomNavigation from './BottomNavigation';
 
 const Dashboard = () => {
   const [ efanEnabled, setEfanEnabled ] = useState<boolean>(false)
@@ -58,7 +59,6 @@ const Dashboard = () => {
       backgroundColor: 'var(--ha-S100)',
     }}
     >
-      <SideBar />
       <Column
         fullWidth 
         fullHeight

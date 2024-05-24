@@ -19,8 +19,8 @@ const EnergyUsageSummary = (props: any) => {
 
     const historyParams: UseAllHistoryParams = {
         userId: props.user,
-        startTime: '2024-01-01T00:00:00.000+08:00',
-        endTime: '2024-12-31T00:00:00.000+08:00',
+        startTime: new Date(utc.getFullYear(), 0, 1, 0, 0, 0).toISOString(),
+        endTime: new Date(utc.getFullYear(), 11, 30, 23, 59, 59).toISOString(),
         isSummary: true
     }
     

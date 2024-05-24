@@ -11,6 +11,11 @@ export interface UseAllHistoryParams {
     isSummary?: boolean
 }
 
+export interface TimeFrame {
+    start: Date,
+    end: Date
+}
+
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const getMonthName = (num: number) => {
@@ -66,7 +71,7 @@ const getNearestPrevData = (index: any, data: any) => {
         - checks whether the data from ha-formatted data is above the end timeFrame set by the user(default set to year on dashboard page)
 */
 
-const checkEndDate = (stateTime: any, timeFrame: any) => {
+const checkEndDate = (stateTime: any, timeFrame: TimeFrame) => {
     const timeFrameSeconds = timeFrame.end.getTime()
     const logic = stateTime > timeFrameSeconds
 
@@ -78,7 +83,7 @@ const checkEndDate = (stateTime: any, timeFrame: any) => {
         - checks whether the data from ha-formatted data is above the start timeFrame set by the user(default set to year on dashboard page)
 */
 
-const checkStartDate = (stateTime: any, timeFrame: any) => {
+const checkStartDate = (stateTime: any, timeFrame: TimeFrame) => {
     const timeFrameSeconds = timeFrame.start.getTime()
 
     //const logic data range (startTime - 1) day to Endtime
@@ -105,7 +110,7 @@ const nestedGrouping = (seq: any, keys: any) => {
     });
 }
 
-const createEmptyYearArr = (timeframe: any) => {
+const createEmptyYearArr = (timeframe: TimeFrame) => {
     const startYear = new Date(timeframe.start).getTime()
     const endYear = new Date(timeframe.end).getTime()
     const differenceInYears = new Date(endYear).getFullYear() - new Date(startYear).getFullYear()
@@ -174,9 +179,11 @@ const getTotalKwH = (data: any, prevState: any) => {
     return {total: doRoundNumber(computeTotalKwh, 2), prevState: doRoundNumber(prevState, 2)}
 }
 
-const groupByYearsObject = (data: any, timeframe: any, name: string) => {
+const groupByYearsObject = (data: any, timeframe: TimeFrame, name: string) => {
     const toBeFilledYearArray = createEmptyYearArr(timeframe)
     const yearArr = <any>[]
+
+    console.log(timeframe)
     
     data.every((val, index, arr) => {
         const stateTime = {
@@ -271,7 +278,7 @@ const groupByYearsObject = (data: any, timeframe: any, name: string) => {
     }
 }
 
-const groupByHours = async(timeframe: any, data: any[], name: string, differenceInDays: number) => {
+const groupByHours = async(timeframe: TimeFrame, data: any[], name: string, differenceInDays: number) => {
     if(!groupByYearsObject(data, timeframe, name)){
         return 0
     }
@@ -452,7 +459,7 @@ const groupByHours = async(timeframe: any, data: any[], name: string, difference
     return {arr: sliced, total: computeTotalKwh}
 }
 
-const groupByDays = async(timeframe: any, data: any[], name: string) => {
+const groupByDays = async(timeframe: TimeFrame, data: any[], name: string) => {
     if(!groupByYearsObject(data, timeframe, name)){
         return 0
     }
@@ -626,7 +633,7 @@ const groupByDays = async(timeframe: any, data: any[], name: string) => {
     return {arr: computeKwh, total: computeTotalKwh}
 }
 
-const groupByMonths = async(timeframe: any, data: any[], name: string, isSummary: boolean) => {
+const groupByMonths = async(timeframe: TimeFrame, data: any[], name: string, isSummary: boolean) => {
     if(!groupByYearsObject(data, timeframe, name)){
         return 0
     }
@@ -666,7 +673,7 @@ const groupByMonths = async(timeframe: any, data: any[], name: string, isSummary
 
         const computed = Object.entries(yearVal).map(([monthKey, monthVal], monthIndex, monthArr) => {
             if(monthVal.length === 0){
-                return []
+                return [parseInt(monthKey), 0]
             }
         
             let lastItemIndex = monthVal.length - 1
@@ -730,13 +737,37 @@ const groupByMonths = async(timeframe: any, data: any[], name: string, isSummary
         return computed
     })
 
+    console.log(kwhConsumed)
+
     const computeTotalKwh = getTotalKwH(toFlatMapAllValues, nearestPrevData)
 
-    const decomposeYear = [].concat(...kwhConsumed)
+    const removeNotIncludedMonths = kwhConsumed.map((monthArr, index, yearArr) => {
+        console.log(timeframe.start.getMonth())
+        console.log(timeframe.end)
+        if(yearArr.length > 1){
+            const startIndex = 0
+            const endIndex = yearArr.length - 1
 
-    const removeEmptyArray = decomposeYear.filter(arr => arr.length > 0)
+            if(index === startIndex){
+                return monthArr.filter((monthItem, index, monthArr) => index >= timeframe.start.getMonth())
+            } else if(index === endIndex){
+                return monthArr.filter((monthItem, index, monthArr) => index <= timeframe.end.getMonth())
+            } else {
+                return monthArr
+            }
+        } else {
+            return monthArr.filter((monthItem, index, monthArr) => {
+                console.log(monthItem)
+                return (index >= timeframe.start.getMonth() && index <= timeframe.end.getMonth())
+            })
+        }
+    })
 
-    const removedFormatted = removeEmptyArray.map(([month, val]) => ([getMonthName(month), val]))
+    console.log(removeNotIncludedMonths)
+
+    const decomposeYear = [].concat(...removeNotIncludedMonths)
+
+    const removedFormatted = decomposeYear.map(([month, val]) => ([getMonthName(month), val]))
 
     const monthsArray = Array.from({ length: 12 }, (_, index) => [index, 0]);
     
@@ -782,7 +813,7 @@ const useLocalDatabase = (props: UseAllHistoryParams) => {
             Object.entries(parsed).forEach(async([key, item]) => {
                 // Filter data within the specified time frame
 
-                const parsedTimeframe = {
+                const parsedTimeframe: TimeFrame = {
                     start: parseTimestamp(timeFrame.start),
                     end: parseTimestamp(parseTimestamp(timeFrame.end).getTime() + (1000 * 60 * 60 * 24))
                 }
@@ -792,7 +823,7 @@ const useLocalDatabase = (props: UseAllHistoryParams) => {
                 console.log(differenceInDays)
                 console.log(parsedTimeframe)
 
-                const hourDayTimeFrame = {
+                const hourDayTimeFrame: TimeFrame = {
                     start: parseTimestamp(timeFrame.start),
                     end: differenceInDays ? parseTimestamp(parseTimestamp(timeFrame.end).getTime() + (1000 * 60 * 60 * 24)) : parseTimestamp(timeFrame.start)
                 }
@@ -804,7 +835,7 @@ const useLocalDatabase = (props: UseAllHistoryParams) => {
                     console.log('pasok days')
                     allSensors[key] = await groupByDays(hourDayTimeFrame, item, key)
                 } else {
-                    const monthTimeframe = {
+                    const monthTimeframe: TimeFrame = {
                         start: new Date(parsedTimeframe.start.getFullYear(), parsedTimeframe.start.getMonth(), 1, 0, 0, 0),
                         end: new Date(parsedTimeframe.end.getFullYear(), parsedTimeframe.end.getMonth() + 1, 0, 23, 59, 59)
                     }

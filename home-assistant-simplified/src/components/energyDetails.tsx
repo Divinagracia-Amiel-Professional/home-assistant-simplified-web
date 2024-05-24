@@ -149,13 +149,13 @@ const EnergyDetails = (props: any) => {
         }
     }
 
-    // const localDB = useLocalDatabase(toUTC)
+    const localDB = useLocalDatabase(toUTC)
 
     // // useEffect(() => {
     // //     setData(localDB)
     // // }, [localDB])
 
-    // console.log(localDB)
+    console.log(localDB)
 
     return(
         <div className='energy-details-content'>

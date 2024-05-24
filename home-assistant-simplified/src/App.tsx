@@ -3,6 +3,7 @@ import { HassConnect } from '@hakit/core';
 import Dashboard from './Dashboard';
 import CustomThemeContext from '../scripts/custom-hooks/customThemeContext'
 import { ThemeProvider as MuiTheme } from '@mui/material';
+import FixedBottomNavigation from './BottomNavigation';
 
 function App() {
   return <>
@@ -29,7 +30,8 @@ function App() {
         includeThemeControls 
       />
       <MuiTheme theme>
-        <Dashboard />
+        {/* <Dashboard /> */}
+        <FixedBottomNavigation />
       </MuiTheme>
     </HassConnect>
   </>
