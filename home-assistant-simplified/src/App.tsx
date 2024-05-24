@@ -2,6 +2,7 @@ import { ThemeProvider } from '@hakit/components';
 import { HassConnect } from '@hakit/core';
 import Dashboard from './Dashboard';
 import CustomThemeContext from '../scripts/custom-hooks/customThemeContext'
+import { ThemeProvider as MuiTheme } from '@mui/material';
 
 function App() {
   return <>
@@ -27,9 +28,9 @@ function App() {
         }}
         includeThemeControls 
       />
-      <CustomThemeContext.Provider value={{}}>
+      <MuiTheme theme>
         <Dashboard />
-      </CustomThemeContext.Provider>
+      </MuiTheme>
     </HassConnect>
   </>
 }

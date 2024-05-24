@@ -54,8 +54,8 @@ const Dashboard = () => {
     fullHeight
     wrap='nowrap'
     style={{
-      overflow: 'hidden',
-      backgroundColor: 'var(--ha-S100)'
+      overflowY: 'scroll',
+      backgroundColor: 'var(--ha-S100)',
     }}
     >
       <SideBar />

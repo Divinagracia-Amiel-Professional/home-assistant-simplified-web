@@ -3,12 +3,10 @@ import { useState, useEffect } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
 import { VictoryBar } from 'victory';
 import useSensorHistory, { UseHistoryParams } from '../../../scripts/custom-hooks/useSensorHistory';
-import useAllSensorHistory, { UseAllHistoryParams } from '../../../scripts/custom-hooks/useAllSensoryHistory'
-import useLocalDatabase from '../../../scripts/custom-hooks/useLocalDatabase'
+import useLocalDatabase, { UseAllHistoryParams } from '../../../scripts/custom-hooks/useLocalDatabase'
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { Efan } from '../../../constants/icons';
 import { 
     VictoryChart,
     VictoryVoronoiContainer,
@@ -17,6 +15,7 @@ import {
     VictoryHistogram,
     VictoryAxis 
 } from 'victory';
+import { Slider } from '@mui/material';
 
 const customStyleLabel = {
     '.MuiFormControlLabel-label': {
@@ -34,6 +33,7 @@ const customStyleCheck = {
 
 //style of axis
 const sharedAxisStyles = {
+    grid: {stroke: 'transparent'},
     tickLabels: {
       fontSize: 13
     },
@@ -45,13 +45,21 @@ const sharedAxisStyles = {
   };
 
 const EnergyUsageGraph = (props: any) => {
-    const [ historyParams, setHistoryParams ] = useState<UseHistoryParams>()
+    const [ isLoading, setIsLoading ] = useState<boolean>(false)
+    const [ sliderVal, setSliderVal ] = useState<number>(0)
+
+    // const [ page, setPage ] = useState<number>(0)
+    // const [ historyParams, setHistoryParams ] = useState<UseAllHistoryParams>(null)
     const [ selected, setSelected ] = useState({
         AC: false,
         Efan: false,
         PC: false,
         Monitor: false,
     })
+
+    useEffect(() => {
+        setSliderVal(0)
+    }, [ props?.historyParams ])
 
     const handleSelected = (device: string) => {
         setSelected(prevState => ({
@@ -60,31 +68,120 @@ const EnergyUsageGraph = (props: any) => {
         }))
     }
 
-    const params: UseAllHistoryParams = {
-        userId: props.user,
-        startTime: '2024-04-01T00:00:00.000+08:00',
-        endTime: '2024-05-20T00:00:00.000+08:00',
-    }
+    const handleSliderChange = (event: Event, newValue: number | number[]) => {
+        setSliderVal(newValue as number);
+    };
    
     // const historyData = useAllSensorHistory(defaultParams)
     // console.log(historyData)
 
-    const data = useLocalDatabase(params)
+    const {
+        EFan: EfanData,
+        AC: ACData,
+        Monitor: MonitorData,
+        PC: PCData
+    } = useLocalDatabase(props.historyParams)
 
+    const dataGroup = {
+        Efan: EfanData?.arr,
+        AC: ACData?.arr,
+        Monitor: MonitorData?.arr,
+        PC: PCData?.arr
+    }
+
+    const SensorData = [EfanData, ACData, MonitorData, PCData]
+
+    const haveValues = SensorData.filter(data => data)
+    const itemLength = haveValues.length ? haveValues[0].arr.length : 0 
+
+    const numberOfItems = itemLength ? (Math.floor(itemLength / 6) > 0 ? 6 : itemLength ) : 1
+
+    const from = sliderVal * numberOfItems
+    const to = Math.min((sliderVal + 1) * numberOfItems, itemLength);
+
+    const minPage = 0
+    const maxPage = Math.ceil(itemLength / 6) - 1
+
+    const PagedData = haveValues.length ? haveValues.map(data => data.arr.slice(from, to)) : null
+
+    console.log(PagedData)
+    
     return <div
         className='energy-usage-graph'
     >
+        <p>{sliderVal}</p>
+        <p>{`from: ${from} to ${to}`}</p>
         <FormGroup
             row
             style={{
                 gap: 0,
             }}
         >
-            <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.AC} onChange={() => { handleSelected('AC') }}/>} label="AC" />
-            <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.Efan} onChange={() => { handleSelected('Efan') }}/>} label="Efan" />
-            <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.PC} onChange={() => { handleSelected('PC') }}/>} label="PC" />
-            <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.Monitor} onChange={() => { handleSelected('Monitor') }}/>} label="Monitor" />
-            <p>{data.type}</p>
+            <div
+                className='energy-usage-graph-content'
+            >
+                <div
+                    className='energy-usage-graph-section'
+                >
+                    <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.AC} onChange={() => { handleSelected('AC') }}/>} label="AC" />
+                    <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.Efan} onChange={() => { handleSelected('Efan') }}/>} label="Efan" />
+                    <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.PC} onChange={() => { handleSelected('PC') }}/>} label="PC" />
+                    <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.Monitor} onChange={() => { handleSelected('Monitor') }}/>} label="Monitor" />
+                </div>
+                <div
+                    className='energy-usage-graph-section'
+                >
+                    <VictoryChart>
+                        <VictoryStack
+                            // domainPadding={20}
+                            colorScale={[
+                                "var(--ha-900)",
+                                "var(--ha-700)",
+                                "var(--ha-500)",
+                                "var(--ha-300)",
+                                // "#d45087",
+                                // "#f95d6a",
+                                // "#ff7c43",
+                                // "#ffa600"
+                            ]}
+                        >
+                            {
+                                PagedData ? PagedData.map(data => {
+                                    return(
+                                        <VictoryBar 
+                                            barRatio={1}
+                                            data={data}
+                                            x={0}
+                                            y={1}
+                                        />
+                                    )
+                                }) : null
+                            }
+                        </VictoryStack>
+
+                        <VictoryAxis
+                            // tickValues={[1, 2, 3, 4]}
+                            // tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+                            style={sharedAxisStyles}
+                        />
+
+                        {/* <VictoryAxis
+                            dependentAxis
+                            style={sharedAxisStyles}
+                        /> */}
+                    </VictoryChart>
+                </div>
+                <Slider 
+                    value={typeof sliderVal === 'number' ? sliderVal : 0}
+                    onChange={handleSliderChange}
+                    sx={{width: "50vw"}}
+
+                    step={1}
+                    marks
+                    min={minPage}
+                    max={maxPage}
+                />
+            </div>
         </FormGroup>
     </div>
 }

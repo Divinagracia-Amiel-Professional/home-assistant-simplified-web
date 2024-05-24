@@ -206,7 +206,7 @@
     align-self: stretch;
     gap: 20px;
 
-    height: 50%;
+    height: 60%;
 }
 
 .energy-usage-summary-section{
@@ -224,8 +224,60 @@
     border-top-right-radius: 30px;
 }
 
-.energy-usage-graph{
+.energy-details-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    margin-top: 25px;
+    gap: 25px;
+}
+  
+.date-picker-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    gap: 20px
+}
 
+.energy-usage-graph{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}
+
+.energy-usage-graph-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}
+
+.slider{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    padding-left: 15;
+    padding-right: 15;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    padding-left: 15;
+    padding-right: 15;
 }
 
 @media only screen and (max-width: 900px) {

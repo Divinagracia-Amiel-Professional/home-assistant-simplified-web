@@ -4,7 +4,14 @@ import useAllSensorHistory, { UseAllHistoryParams } from './useAllSensoryHistory
 import _, { fill } from 'lodash'
 import getMDYFormat, { getMDYFormatGetFunctions, getHoursFormat, getHoursFromNumber } from '../functions/getMDYFormat'
 
-const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+export interface UseAllHistoryParams {
+    userId: string,
+    startTime: string,
+    endTime: string,
+    isSummary?: boolean
+}
+
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const getMonthName = (num: number) => {
     const month = monthNames[num]
@@ -28,7 +35,7 @@ const doRoundNumber = (num: number, decPlaces: number) => {
         - parses datestring to Date Object
 */
 
-const parseTimestamp = (timestamp: string) => new Date(timestamp);
+const parseTimestamp = (timestamp: string | number) => new Date(timestamp);
 
 /*
     getNearestPrevData()
@@ -37,14 +44,14 @@ const parseTimestamp = (timestamp: string) => new Date(timestamp);
 */
 
 const getNearestPrevData = (index: any, data: any) => {
-    let currentIndex = index
+    let currentIndex = index - 1
 
-    while((data[currentIndex].state === 'unavailable' || data[currentIndex].state === 0) && currentIndex >= 0){
-        currentIndex--
+    if(currentIndex < 0){
+        return 0
     }
 
-    if(currentIndex === -1){
-        return null
+    while((currentIndex >= 0 && (data[currentIndex].state === 0) || data[currentIndex].state === 'unavailable')){
+        currentIndex--
     }
     // const toArray = [
     //     new Date(data[currentIndex].last_changed).getHours(),
@@ -88,56 +95,15 @@ const checkStartDate = (stateTime: any, timeFrame: any) => {
         - this is to ensure that the array is in the exact 24hour section in the graph
 */
 
-const createEmptyDayArr = (timeframe: any) => { 
-    const difference = (timeframe.end.getTime() - timeframe.start.getTime()) / (1000 * 60 * 60 * 24)
-    console.log(`day difference ${difference}`)
-    // const daySeconds = 1000 * 60 * 60 * 24
-    // let startSeconds = timeframe.start.getTime() - daySeconds
-    
-    // console.log(new Date(startSeconds).getDate())
-
-    // const dayValuePairs = Array.from({ length: differenceInDays === 0 ? 1 : differenceInDays }, (_, index) => {
-    //     startSeconds = startSeconds + daySeconds
-    //     return [(new Date(startSeconds).getDate().toString()), []] 
-    // });
-
-    // const toObject = Object.fromEntries(dayValuePairs)
-    
-    // return toObject
-}
-
-/*
-
-*/
-
-const createEmptyMonthArr = (timeframe: any) => {
-    const difference = (new Date(timeframe.end.getFullYear(), timeframe.end.getMonth(), 1).getTime() - new Date(timeframe.start.getFullYear(), timeframe.start.getMonth(), 1).getTime()) / (1000 * 60 * 60 * 24 * 30.437)
-    console.log(`month difference ${difference}`)
-    const differenceInDays = (timeframe.end.getTime() - timeframe.start.getTime()) / (1000 * 60 * 60 * 24)
-    console.log(`day difference ${differenceInDays}`)
-
-    let currentMonth = new Date(timeframe.start.getFullYear(), timeframe.start.getMonth() - 1, 1).getMonth()
-    let currentDay = timeframe.start
-
-    const monthValuePairs = Array.from({ length: Math.round(difference) + 1 }, (_, index) => {
-        let dayArr = []
-        currentMonth = new Date(new Date(currentMonth).getFullYear(), currentMonth + 1, 1).getMonth()
-        while(currentDay.getMonth() === currentMonth && currentDay.getTime() <= timeframe.end.getTime()){
-            dayArr.push([
-                currentDay.getDate().toString(), {}
-            ])
-            currentDay = new Date(currentDay.getFullYear(), currentDay.getMonth(), currentDay.getDate() + 1)
-        }
-
-        const toObject = Object.fromEntries(dayArr)
-        
-        return ([currentMonth, toObject])
+const nestedGrouping = (seq: any, keys: any) => {
+    if (!keys.length)
+        return seq;
+    var first = keys[0];
+    var rest = keys.slice(1);
+    return _.mapValues(_.groupBy(seq, first), function (value) { 
+        return nestedGrouping(value, rest)
     });
-
-    const toObject = Object.fromEntries(monthValuePairs)
-
-    return toObject
-} 
+}
 
 const createEmptyYearArr = (timeframe: any) => {
     const startYear = new Date(timeframe.start).getTime()
@@ -146,10 +112,13 @@ const createEmptyYearArr = (timeframe: any) => {
 
     let counter = new Date(startYear).getFullYear() - 1
 
-    const monthsArray = Array.from({ length: 12 }, (_, index) => [index, []]);
-
     const yearValuePairs = Array.from({ length: differenceInYears === 0 ? 1 : differenceInYears }, (_, index) => {
         counter++
+        const monthsArray = Array.from({ length: 12 }, (_, index) => {
+            const lastDayInCurrentMonth = new Date(counter, index + 1, 0).getDate()
+                const daysArray = Array.from({ length: lastDayInCurrentMonth}, (_, index) => [index + 1, []])
+            return [index, Object.fromEntries(daysArray)]
+        });
         return [(new Date(counter, 0, 1).getFullYear().toString()), Object.fromEntries(monthsArray)] 
     });
 
@@ -158,286 +127,57 @@ const createEmptyYearArr = (timeframe: any) => {
     return toObject
 }
 
-const groupByHours = async(timeframe: any, data: any[], name: string, differenceInDays: number) => {
-    const hoursArr = <any>[]
-    // const toBeFilledDayArr = createEmptyDayArr(timeframe, differenceInDays)
-    const toBeFilledMonthArr = createEmptyMonthArr(timeframe)
-
-    console.log(timeframe)
-
-    data.every((val, index, arr) => {
-        // const dataParams = {
-        //     val: val,
-        //     index: index,
-        //     arr: arr
-        // }
-
-        const stateTime = {
-            hour: parseTimestamp(val.last_changed).getHours(),
-            day: parseTimestamp(val.last_changed).getDate(),
-            month: parseTimestamp(val.last_changed).getMonth(),
-        }
-
-        const parsedToSeconds = parseTimestamp(val.last_changed).getTime()
-
-        // console.log(`
-        //     state time: ${val.last_changed} 
-        //     timeframe start: ${timeframe.start}
-        //     timeframe end: ${timeframe.end} 
-        //     isStateTimeMoreThanTimeframeEnd: ${stateTime.hour > timeframe.end.getHours()}
-        //     checkEnd: ${checkEndDate(parsedToSeconds, timeframe)}
-        //     checkStart: ${checkStartDate(parsedToSeconds, timeframe)}
-        // `)
-
-        // console.log(val.last_changed)
-    
-        if(checkEndDate(parsedToSeconds, timeframe)){
-            // console.log('pumapasok')
-            return false
-        }
-
-        const hoursData = {
-            name: name,
-            index: index,
-            time: {
-                last_changed: val.last_changed,
-                hour: stateTime.hour,
-                day: stateTime.day,
-                month: stateTime.month,
-            },
-            state: val.state
-        }
-
-        if(checkStartDate(parsedToSeconds, timeframe)){
-            hoursArr.push(hoursData)
-        }
-
-        return true
-    })
-
-    console.log(hoursArr)
-
-    if(hoursArr.length === 0){
-        return null
+const getTotalKwH = (data: any, prevState: any) => {
+    if(!data.length){
+        return 0
     }
 
-    const indexOfFirstData = hoursArr[0].index
+    let firstItemIndex = 0
+    // if(prevState === null){
+    //     prevState = nearestPrevData
+    // }
 
-    const nearestPrevData = getNearestPrevData(indexOfFirstData, data)
+    while(data[firstItemIndex].state === 'unavailable'){
+        console.log(firstItemIndex)
+        firstItemIndex++
+    }
 
-    console.log(`nearest data: ${JSON.stringify(nearestPrevData)}`)
+    var isfirstItemStateZero = data[firstItemIndex].state === 0
 
-    const groupedByMonth = _.groupBy(hoursArr, (({time}) => time.month))
+    console.log(`nearest prevData: ${prevState}`)
+    const computeTotalKwh = data.reduce((partialSum, entity, index, arr) => {
+        const currentState = entity.state
 
-    // console.log(groupedByMonth)
-    
-    const groupedByDay = Object.entries(groupedByMonth).map(([key, byMonth]) => {
-        if(byMonth.length === 0){
-            return ([])
+        if(currentState === 'unavailable' || !currentState){
+            return partialSum
         }
+        else if (currentState < prevState){
+            const diffPrevToCurrent = Math.abs(currentState - prevState)
+            const diffZeroToCurrent = Math.abs(0 - currentState)
 
-        const grouped = _.groupBy(byMonth, ({time}) => time.day)
-
-        const toArray = Object.entries(grouped).map(([key, value]) => {
-            return value
-        })
-
-        return [key, grouped]
-    })
-
-    // console.log(groupedByDay)
-
-    const groupedByHour = groupedByDay.map(([key, byDay]) => {
-        if(Object.keys(byDay).length === 0){
-            return ([])
-        }
-        
-        const grouped = Object.entries(byDay).map(([key, value]) => {
-            if(value.length === 0){
-                return ([])
+            if(diffZeroToCurrent < diffPrevToCurrent){
+                prevState = currentState
+                return partialSum + currentState
+            } else {
+                const difference = prevState - currentState
+                prevState = currentState
+                return partialSum + difference
             }
-
-            const grouped = _.groupBy(value, ({time}) => time.hour)
-            return ([
-                key, grouped
-            ])
-        })
-
-        const toObject = Object.fromEntries(grouped)
-
-        return [key, toObject]
-    })
-
-    const groupedByHourObject = Object.fromEntries(groupedByHour)
-
-    // console.log(JSON.stringify(groupedByHourObject))
-    console.log(JSON.stringify(toBeFilledMonthArr))
-
-    Object.entries(groupedByHourObject).forEach(([key, value]) => {
-        // toBeFilledMonthArr[key] = value
-
-        Object.entries(value).forEach(([dayKey, dayValue]) => {
-            toBeFilledMonthArr[key][dayKey] = dayValue
-        })
-    })
-
-    console.log(JSON.stringify(toBeFilledMonthArr))
-
-    //-------------------------------------------------
-
-    const kwhConsumed = Object.entries(toBeFilledMonthArr).map(([monthKey, monthVal], monthIndex, monthArr) => {
-        let hadMonthChange = false
-        if(Object.keys(monthVal).length === 0){
-            return [monthKey, {}]
-        }
-    
-        const dayArr = Object.entries(monthVal).map(([dayKey, dayVal], dayIndex, dayArr) => {
-            if(Object.keys(dayVal).length ===  0){
-                return [dayKey, []]
-            }
-            
-            const hourArr = Object.entries(dayVal).map(([hourKey, hourVal], hourIndex, hourArr) => {
-                let lastItemIndex = hourVal.length - 1
-                let firstItemIndex = 0
-                let hourInterval;
-
-                const ifMonthChangeRange = parseInt(hourKey) <= 23 && parseInt(hourKey) > 20
-
-                if (hourVal.length === 1 && ifMonthChangeRange && dayKey === '1' && !hadMonthChange){
-                    if(hourVal[0].state !== 'unavailable' || hourVal[0].state !== 0){
-                        hadMonthChange = true
-                        return [
-                            hourKey, hourVal[0].state, hourInterval = false
-                        ]
-                    } 
-                } else if (hourVal.length === 1){
-                    return [
-                        hourKey, hourVal[0].state, hourInterval = true  
-                    ] 
-                } 
-
-                while(hourVal[firstItemIndex].state === 'unavailable' || hourVal[firstItemIndex].state === 0){
-                    firstItemIndex++
-                }
-
-                while(hourVal[lastItemIndex].state === 'unavailable' || hourVal[firstItemIndex].state === 0){
-                    lastItemIndex--
-                }
-
-                // if(dayKey === '1' && ifMonthChangeRange && !hadMonthChange){
-                //     if(hourVal[0].state !== 'unavailable' || hourVal[0].state !== 0){
-                //         hadMonthChange = true
-                //         return [
-                //             hourKey, hourVal[0].state, hourInterval = false
-                //         ]
-                //     }
-                // }
-
-                const firstStateVal = hourVal[firstItemIndex].state
-                const lastStateVal = hourVal[lastItemIndex].state
-                const kwh = lastStateVal - firstStateVal
-
-                return (
-                    [
-                        hourKey, kwh, hourInterval = false
-                    ]
-                )
-            }) 
-
-            return [dayKey, hourArr]
-        })
-
-        const toObject = Object.fromEntries(dayArr)
-
-        return [monthKey, toObject]
-    })
-
-    const kwhConsumedObject = Object.fromEntries(kwhConsumed)
-
-    console.log(kwhConsumedObject)
-
-    const removeMonthKeys = Object.entries(kwhConsumedObject).map(([monthKey, monthVal], monthIndex, monthArr) => {
-            if(Object.keys(monthVal).length === 0){
-                return [monthKey, {}]
-            }
-        
-            const dayArr = Object.entries(monthVal).map(([dayKey, dayVal], dayIndex, dayArr) => {
-                if(dayVal.length ===  0){
-                    return [dayKey, []]
-                }
-                
-                const hourArr = dayVal.map((hourVal, hourIndex, hourArr) => {
-                    return hourVal
-                }) 
-    
-                return [dayKey, hourArr]
-            })
-    
-            // const toObject = Object.fromEntries(dayArr)
-    
-        return dayArr
-    })
-
-    const regroupDays = [].concat(...removeMonthKeys)
-
-    // console.log(regroupDays)
-
-    const filledkwHArr = regroupDays.map(([key, dayArr]) => {
-        const defaultHourInterval = false
-        const toBeFilledArray = Array.from({ length: 24 }, (_, index) => [index, 0, defaultHourInterval]);
-        const modifiedDayArr = dayArr
-
-        modifiedDayArr.forEach(([hourString, val, hourInterval]) => {
-            // console.log([hourString, val, hourInterval])
-            const parsed = parseInt(hourString)
-            toBeFilledArray[parsed][1] = val
-            toBeFilledArray[parsed][2] = hourInterval
-        })
-
-        return toBeFilledArray
-    })
-
-    const joinedTimeValue = [].concat(...filledkwHArr)
-
-    let prevVal = nearestPrevData
-    const computeKwh = joinedTimeValue.map(([hour, data, isHourInterval], index, arr) => {
-        const formatHour = getHoursFromNumber(hour)
-        const noVal = data === 0 || data === 'unavailable'
-        if(hour === 22 && arr[index - 1][2] === false && prevVal >= data && !noVal){ // case for monthChange on first arr
-            prevVal = arr[index - 1][1]
-            const difference = data - prevVal
-            prevVal = data
-            return [formatHour, difference]
-        } else if(isHourInterval && !noVal){
-            const difference = data - prevVal
-            prevVal = data
-            return [formatHour, difference]
         } else {
-            return [formatHour, data]
+            const difference = currentState - prevState
+            prevState = currentState
+            return partialSum + difference
         }
-    })
 
-    console.log(joinedTimeValue)
-    // console.log(computeKwh)
+    }, 0)
 
-    const slice = computeKwh.slice(0, ((differenceInDays) * 24))
-
-    return slice
+    return {total: doRoundNumber(computeTotalKwh, 2), prevState: doRoundNumber(prevState, 2)}
 }
 
-const groupByDays = async(timeframe: any, data: any[], name: string) => {
-    const daysArr = []   
-}
-
-const groupByMonths = async(timeframe: any, data: any[], name: string) => {
+const groupByYearsObject = (data: any, timeframe: any, name: string) => {
     const toBeFilledYearArray = createEmptyYearArr(timeframe)
-    // console.log(emptyYearArray)
+    const yearArr = <any>[]
     
-    const monthsArr = <any>[]
-    const timeframeCopy = timeframe.start
-
-    console.log(timeframe)
-
     data.every((val, index, arr) => {
         const stateTime = {
             hour: parseTimestamp(val.last_changed).getHours(),
@@ -447,11 +187,6 @@ const groupByMonths = async(timeframe: any, data: any[], name: string) => {
         }
 
         const parsedToSeconds = parseTimestamp(val.last_changed).getTime()
-        // console.log(`
-        //     state time: ${stateTime} 
-        //     timeframe end: ${timeframe.end} 
-        //     isStateTimeMoreThanTimeframeEnd: ${stateTime < timeframe.end}
-        // `)
 
         const modifiedTimeFrame = {
             start: timeframe.start,
@@ -464,6 +199,7 @@ const groupByMonths = async(timeframe: any, data: any[], name: string) => {
 
         const monthsData = {
             name: name,
+            index: index,
             time: {
                 last_changed: val.last_changed,
                 hour: stateTime.hour,
@@ -474,43 +210,456 @@ const groupByMonths = async(timeframe: any, data: any[], name: string) => {
             state: val.state
         }
 
-        if(stateTime.month >= timeframe.start.getMonth()){
-            monthsArr.push(monthsData)
+        const stateTimeString = {
+            hour: stateTime.hour.toString(),
+            day: stateTime.day.toString(),
+            month: stateTime.month.toString(),
+            year: stateTime.year.toString()
+        }
+
+        if(checkStartDate(parsedToSeconds, modifiedTimeFrame)){
+            yearArr.push(monthsData)
         }
 
         return true
     })
 
-    console.log(monthsArr)
+    console.log(`name: ${name}`)
+    console.log(yearArr)
 
-    const indexOfFirstData = monthsArr[0].index
+    if(yearArr.length === 0){
+        console.log('null')
+        return null
+    }
 
-    // const nearestPrevData = getNearestPrevData(indexOfFirstData, data)
+    const indexOfFirstData = yearArr[0].index
 
-    const groupedByYears = _.groupBy(monthsArr, (({time}) => time.year))
+    const nearestPrevData = getNearestPrevData(indexOfFirstData, data)
 
-    const groupedByMonths = Object.entries(groupedByYears).map(([key, yearVal]) => {
-        const grouped = _.groupBy(yearVal, (({time}) => time.month))
+    const byYear = (state: any) => {
+        return state.time.year
+    }
 
-        return [key, grouped]
-    })
+    const byMonth = (state: any) => {
+        return state.time.month
+    }
 
-    const groupedByMonthsObj = Object.fromEntries(groupedByMonths)
+    const byDay = (state: any) => {
+        return state.time.day
+    }
 
-    console.log(toBeFilledYearArray)
-    console.log(groupedByMonthsObj)
+    const byHour = (state: any) => {
+        return state.time.hour
+    }
 
-    Object.entries(groupedByMonthsObj).forEach(([yearKey, yearVal]) => {
+    const grouped = nestedGrouping(yearArr, [byYear, byMonth, byDay, byHour])
+
+    console.log(grouped)
+
+    Object.entries(grouped).forEach(([yearKey, yearVal]) => {
         Object.entries(yearVal).forEach(([monthKey, monthVal]) => {
-            toBeFilledYearArray[yearKey][monthKey] = monthVal
+            Object.entries(monthVal).forEach(([dayKey, dayVal]) => {
+                toBeFilledYearArray[yearKey][monthKey][dayKey] = dayVal
+            })
         })
     })
 
-    // Object.entries(_.groupBy(monthVal, ({time}) => time.day)).map(([key, val]) => ([key, val]))
+    return {
+        grouped: toBeFilledYearArray,
+        notFilledGroup: grouped,
+        nearestPrevData: nearestPrevData
+    }
+}
 
-    console.log(toBeFilledYearArray)
+const groupByHours = async(timeframe: any, data: any[], name: string, differenceInDays: number) => {
+    if(!groupByYearsObject(data, timeframe, name)){
+        return 0
+    }
 
-    const kwhConsumed = Object.entries(toBeFilledYearArray).map(([yearKey, yearVal], yearIndex, yearArr) => {
+    const groupedByYears = groupByYearsObject(data, timeframe, name)?.grouped
+    const nearestPrevData = groupByYearsObject(data, timeframe, name)?.nearestPrevData
+    const timeFrameDates = {
+        start: new Date(timeframe.start).getDate(),
+        end: new Date(timeframe.end).getDate()
+    }
+
+    if(!groupedByYears){
+        return null
+    }
+
+    const removeEmpty = Object.entries(groupedByYears).flatMap(([yearKey, yearVal]) => {
+        const removedEmptyDay = Object.entries(yearVal).map(([monthKey, monthVal]) => {
+            if(![].concat(...Object.values(monthVal)).length){
+                return null
+            } else {
+                return Object.entries(monthVal).map(([key, val]) => ([parseInt(key), val]))
+            }  
+        })
+
+        const removedEmptyMonth = removedEmptyDay.filter(item => item)
+        
+        return removedEmptyMonth
+    })
+
+    const trimMonth = removeEmpty.map((month, index, arr) => {
+        const arrLength = arr.length
+        const monthCopy = month
+
+        if(arrLength !== 1){
+            if(index === 0){
+                return month?.filter(dayItem => {return(dayItem[0] >= timeFrameDates.start)})
+            }else{
+                return month?.filter(dayItem => {return(dayItem[0] <= timeFrameDates.end)})
+            }
+        } else {
+            return month?.filter(dayItem => {return(dayItem[0] >= timeFrameDates.start && dayItem[0] <= timeFrameDates.end)})
+        }
+    })
+
+    const flatMonth = trimMonth.flatMap(month => {
+        const days = month.map(dayItem => {
+
+            if(!dayItem.length){
+                return []
+            }
+            
+            const toArray = Object.entries(dayItem[1]).map(([key, val]) => ([
+                key, val
+            ]))
+
+            return toArray
+        })
+
+        return days
+    })
+
+    const toFlatMapAllValues = flatMonth.flatMap(monthArr => {
+        const flatDay = monthArr.flatMap(hours => hours[1])
+
+        return flatDay
+    })
+
+    console.log(toFlatMapAllValues)
+
+    const filledDayArr = flatMonth.flatMap(dayArr => {
+        const toBeFilledArray = Array.from({ length: 24 }, (_, index) => [index, 0]);
+        const modifiedDayArr = dayArr
+        
+        modifiedDayArr.forEach(([key, val]) => {
+            toBeFilledArray[key][1] = val
+        })
+
+        return toBeFilledArray
+    })
+
+    console.log(`nearest Data: ${nearestPrevData}`)
+    console.log(filledDayArr)
+
+    let firstItem;
+    let prevState = null;
+    const computeKwh = filledDayArr.map((item, index, arr) => {
+        if(!item[1]){
+            return [getHoursFromNumber(item[0]), 0]
+        }
+ 
+        if(item[1].length === 1 && prevState === null){ //firstItemCase is an hourInterval
+            const currentState = item[1][0].state 
+            if(prevState === null){
+                prevState = nearestPrevData 
+            }
+            const difference = currentState - prevState
+            prevState = currentState
+            return [getHoursFromNumber(item[0]), difference]
+        } else if (item[1].length > 1){ //when hourArray has 5 minute intervals
+            let accumulator = 0
+            let firstItemIndex = 0
+            if(prevState === null){
+                prevState = nearestPrevData
+            }
+            // let prevState;
+
+            while(item[1][firstItemIndex].state === 'unavailable'){
+                console.log(firstItemIndex)
+                firstItemIndex++
+            }
+
+            prevState = item[1][firstItemIndex].state
+
+            item[1].every((hourItem, hourIndex, hourArr) => {
+                const noVal = hourItem.state === 0 || hourItem.state === 'unavailable'
+
+                if(index === 0 || noVal){
+                    return true
+                } else if(!noVal && hourItem.state < prevState){
+                    const diffPrevToCurrent = Math.abs(hourItem.state - prevState)
+                    const diffZeroToCurrent = Math.abs(0 - hourItem.state)
+
+                    if(diffZeroToCurrent < diffPrevToCurrent){
+                        accumulator = accumulator + hourItem.state
+                    } else {
+                        accumulator = accumulator + (prevState - hourItem.state)
+                    }
+                    // if(Math.abs([itemState - prevState]))
+                    // accumulator = accumulator + item.state
+                    prevState = hourItem.state
+                    return true
+                } else {
+                    const difference = hourItem.state - prevState
+                    accumulator = accumulator + difference
+                    prevState = hourItem.state
+                    return true
+                }
+            }) 
+
+            return [getHoursFromNumber(item[0]), accumulator] 
+
+        } else { //when hourInterval
+            const noVal = item[1][0].state === 0 || item[1][0].state === 'unavailable'
+            let accumulator = 0
+            const currentState = item[1][0].state
+            
+            if(!noVal && currentState < prevState){
+                const diffPrevToCurrent = Math.abs(currentState - prevState)
+                const diffZeroToCurrent = Math.abs(0 - currentState)
+
+                if(diffZeroToCurrent < diffPrevToCurrent){
+                    accumulator = accumulator + currentState
+                } else {
+                    accumulator = accumulator + (prevState - currentState)
+                }
+                // if(Math.abs([itemState - prevState]))
+                // accumulator = accumulator + item.state
+                prevState = currentState
+                return [getHoursFromNumber(item[0]), accumulator]
+            } else {
+                const difference = currentState - prevState
+                prevState = currentState
+                return [getHoursFromNumber(item[0]), difference]
+            }
+        }
+    })
+
+    console.log(computeKwh)
+    
+    const computeTotalKwh = getTotalKwH(toFlatMapAllValues, nearestPrevData)
+
+    if(!computeKwh.length){
+        return 0
+    }
+
+    const sliced = computeKwh.slice(0, ((differenceInDays) * 24))
+
+    return {arr: sliced, total: computeTotalKwh}
+}
+
+const groupByDays = async(timeframe: any, data: any[], name: string) => {
+    if(!groupByYearsObject(data, timeframe, name)){
+        return 0
+    }
+
+    const {
+        grouped: groupedByYears,
+        nearestPrevData
+    } = groupByYearsObject(data, timeframe, name)
+
+    const timeFrameDates = {
+        start: new Date(timeframe.start).getDate(),
+        end: new Date(timeframe.end).getDate()
+    }
+
+    const timeFrameTime = {
+        start: new Date(timeframe.start).getTime(),
+        end: new Date(timeframe.end).getTime()
+    }
+
+    const removeEmpty = Object.entries(groupedByYears).flatMap(([yearKey, yearVal]) => {
+        const removedEmptyDay = Object.entries(yearVal).map(([monthKey, monthVal]) => {
+            // if(![].concat(...Object.values(monthVal)).length){
+            //     return [monthKey, monthVal]
+            // } 
+            // else {
+                const flatMonth = Object.entries(monthVal).map(([dayKey, dayVal]) => {
+                    const toArray = Object.values(dayVal).flatMap((hourVal) => Object.values(hourVal))
+
+                    // const monthDateFormat = `${getMonthName(parseInt(monthKey))} ${dayKey}`
+
+                    return [new Date(parseInt(yearKey), parseInt(monthKey), parseInt(dayKey)), toArray]
+                })
+
+                return flatMonth
+            // }  
+        })
+
+        // const removedEmptyMonth = removedEmptyDay.filter(item => item)
+        
+        return removedEmptyDay
+    })
+
+    // console.log(removeEmpty)
+
+    const trimMonth = removeEmpty.map((month, index, arr) => {
+        const arrLength = arr.length
+        const monthCopy = month
+        
+        return month?.filter(dayItem => {return(dayItem[0].getTime() >= timeFrameTime.start && dayItem[0].getTime() < timeFrameTime.end)})
+    })
+
+    console.log(trimMonth)
+
+    const toReformatDate = trimMonth.flatMap((monthItem, index, yearArr) => {
+        const monthItemFormatted = monthItem?.map(([dayDate, dayVal], dayIndex, dayArr) => {
+            const date = dayDate.getDate()
+            const checkVal = dayVal.length ? dayVal : 0
+
+            if(date === 1){
+                return [`${getMonthName(dayDate.getMonth())} ${dayDate.getDate()}`, checkVal]
+            } else {
+                return [`${dayDate.getDate()}`, checkVal]
+            }
+        })
+
+        return monthItemFormatted
+    })
+
+    console.log(toReformatDate)
+
+    const toFlatMapAllValues = toReformatDate.flatMap(([dayKey, dayVal]) => dayVal)
+
+    console.log(toFlatMapAllValues)
+
+    let prevState = null
+    const computeKwh = toReformatDate.map(([dayKey, dayVal], index, arr) => {
+        if(!dayVal){
+            return [dayKey, dayVal]
+        }
+
+        if(dayVal.length === 1 && prevState === null){
+            const currentState = dayVal[0].state
+            if(prevState === null){
+                prevState = nearestPrevData 
+            }
+            const difference = currentState - prevState
+            prevState = currentState
+            return [dayKey, difference]
+        } else if (dayVal.length > 1){
+            let accumulator = 0
+            let firstItemIndex = 0
+            // if(prevState === null){
+            //     prevState = nearestPrevData
+            // }
+
+            // while(dayVal[firstItemIndex].state === 'unavailable'){
+            //     console.log(firstItemIndex)
+            //     firstItemIndex++
+            // }
+
+            // prevState = dayVal[firstItemIndex].state
+
+            dayVal.every((hourItem, hourIndex, hourArr) => {
+                const noVal = hourItem.state === 0 || hourItem.state === 'unavailable'
+
+                if(index === 0 || noVal){
+                    return true
+                } else if(!noVal && hourItem.state < prevState){
+                    const diffPrevToCurrent = Math.abs(hourItem.state - prevState)
+                    const diffZeroToCurrent = Math.abs(0 - hourItem.state)
+
+                    if(diffZeroToCurrent < diffPrevToCurrent){
+                        accumulator = accumulator + hourItem.state
+                    } else {
+                        accumulator = accumulator + (prevState - hourItem.state)
+                    }
+                    // if(Math.abs([itemState - prevState]))
+                    // accumulator = accumulator + item.state
+                    prevState = hourItem.state
+                    return true
+                } else {
+                    const difference = hourItem.state - prevState
+                    accumulator = accumulator + difference
+                    prevState = hourItem.state
+                    return true
+                } 
+            })
+
+            // const {
+            //     total: totalKwh,
+            //     prevState: returnedPrev
+            // } = getTotalKwH(dayVal, null)
+            
+            // prevState = returnedPrev
+
+            return [dayKey, accumulator]
+        } else {
+            const noVal = dayVal[0].state === 0 || dayVal[0].state === 'unavailable'
+            let accumulator = 0
+            const currentState = dayVal[0].state
+            
+            if(!noVal && currentState < prevState){
+                const diffPrevToCurrent = Math.abs(currentState - prevState)
+                const diffZeroToCurrent = Math.abs(0 - currentState)
+
+                if(diffZeroToCurrent < diffPrevToCurrent){
+                    accumulator = accumulator + currentState
+                } else {
+                    accumulator = accumulator + (prevState - currentState)
+                }
+                // if(Math.abs([itemState - prevState]))
+                // accumulator = accumulator + item.state
+                prevState = currentState
+                return [dayKey, accumulator]
+            } else {
+                const difference = currentState - prevState
+                prevState = currentState
+                return [dayKey, difference]
+            }
+        }
+    })
+  
+    const computeTotalKwh = getTotalKwH(toFlatMapAllValues, nearestPrevData)
+
+    // const computeTotalTest = computeKwh.reduce((partialSum, [dayKey, dayVal]) => partialSum + dayVal, 0)
+
+    // console.log(computeTotalTest)
+
+    console.log(computeTotalKwh)
+
+    return {arr: computeKwh, total: computeTotalKwh}
+}
+
+const groupByMonths = async(timeframe: any, data: any[], name: string, isSummary: boolean) => {
+    if(!groupByYearsObject(data, timeframe, name)){
+        return 0
+    }
+
+    const {
+        grouped: groupedByYears,
+        nearestPrevData
+    } = await groupByYearsObject(data, timeframe, name)
+
+    const flatMapped = Object.entries(groupedByYears).map(([yearKey, yearVal]) => {
+        const flatMonth = Object.entries(yearVal).map(([monthKey, monthVal]) => {
+            const flatDay = Object.entries(monthVal).flatMap(([dayKey, dayVal]) => {
+                const flatHours = Object.values(dayVal).flatMap(hourArr => hourArr)
+
+                return flatHours
+            })
+            return [monthKey, flatDay]
+        })
+        
+        const toObject = Object.fromEntries(flatMonth)
+
+        return [yearKey, toObject]
+    })
+
+    const flatMappedObject = Object.fromEntries(flatMapped)
+
+    const toFlatMapAllValues = Object.values(flatMappedObject).flatMap(yearVal => {
+        const flatMonth = Object.values(yearVal).flatMap(monthVal => monthVal)
+
+        return flatMonth
+    })
+
+    const kwhConsumed = Object.entries(flatMappedObject).map(([yearKey, yearVal], yearIndex, yearArr) => {
         const newMonthsArr = []
         const yearLength = yearArr.length
         // console.log(Object.entries(yearArr[0][1])[2][1])
@@ -575,20 +724,41 @@ const groupByMonths = async(timeframe: any, data: any[], name: string) => {
 
             console.log(doRoundNumber(accumulator, 2))
 
-            return [getMonthName(parseInt(monthKey)), doRoundNumber(accumulator, 2)]
+            return [parseInt(monthKey), doRoundNumber(accumulator, 2)]
         })
 
         return computed
     })
 
+    const computeTotalKwh = getTotalKwH(toFlatMapAllValues, nearestPrevData)
+
     const decomposeYear = [].concat(...kwhConsumed)
 
     const removeEmptyArray = decomposeYear.filter(arr => arr.length > 0)
 
-    return removeEmptyArray
+    const removedFormatted = removeEmptyArray.map(([month, val]) => ([getMonthName(month), val]))
+
+    const monthsArray = Array.from({ length: 12 }, (_, index) => [index, 0]);
+    
+    decomposeYear.forEach(item => {
+        if(item.length){
+            monthsArray[item[0]][1] = item[1]
+        }
+    })
+
+    const monthsArrayFormatted = monthsArray.map(([month, val]) => ([getMonthName(month), val]))
+
+    return {
+        arr: isSummary ? monthsArrayFormatted : removedFormatted,
+        total: computeTotalKwh
+    }
 }
 
 const useLocalDatabase = (props: UseAllHistoryParams) => {
+    if(!props){
+        return null
+    }
+
     const [ data, setData ] = useState({})
     const parsed = {
         AC: JSON.parse(JSON.stringify(ACEnergy)).default,
@@ -597,7 +767,7 @@ const useLocalDatabase = (props: UseAllHistoryParams) => {
         EFan: JSON.parse(JSON.stringify(EFanEnergy)).default
     }
 
-    // console.log(parsed)
+    const isSummary = props.isSummary ? props.isSummary : false
 
     const timeFrame = {
         start: props?.startTime,
@@ -614,7 +784,7 @@ const useLocalDatabase = (props: UseAllHistoryParams) => {
 
                 const parsedTimeframe = {
                     start: parseTimestamp(timeFrame.start),
-                    end: parseTimestamp(timeFrame.end)
+                    end: parseTimestamp(parseTimestamp(timeFrame.end).getTime() + (1000 * 60 * 60 * 24))
                 }
 
                 const differenceInDays = ((parsedTimeframe.end.getTime() - parsedTimeframe.start.getTime()) / (1000 * 60 * 60 * 24))
@@ -622,21 +792,24 @@ const useLocalDatabase = (props: UseAllHistoryParams) => {
                 console.log(differenceInDays)
                 console.log(parsedTimeframe)
 
+                const hourDayTimeFrame = {
+                    start: parseTimestamp(timeFrame.start),
+                    end: differenceInDays ? parseTimestamp(parseTimestamp(timeFrame.end).getTime() + (1000 * 60 * 60 * 24)) : parseTimestamp(timeFrame.start)
+                }
+
                 if(differenceInDays <= 3){
                     console.log('pasok hours')
-                    allSensors[key] = await groupByHours(parsedTimeframe, item, key, differenceInDays)
+                    allSensors[key] = await groupByHours(hourDayTimeFrame, item, key, differenceInDays)
                 } else if (differenceInDays <= 36){
                     console.log('pasok days')
-                    allSensors[key] = await groupByDays(parsedTimeframe, item, key, differenceInDays)
-                    
+                    allSensors[key] = await groupByDays(hourDayTimeFrame, item, key)
                 } else {
                     const monthTimeframe = {
-                        start: parsedTimeframe.start,
+                        start: new Date(parsedTimeframe.start.getFullYear(), parsedTimeframe.start.getMonth(), 1, 0, 0, 0),
                         end: new Date(parsedTimeframe.end.getFullYear(), parsedTimeframe.end.getMonth() + 1, 0, 23, 59, 59)
                     }
-                    allSensors[key] = await groupByMonths(monthTimeframe, item, key, differenceInDays)
+                    allSensors[key] = await groupByMonths(monthTimeframe, item, key, isSummary)
                 }
-                
             });
 
             setData(allSensors)
@@ -645,462 +818,9 @@ const useLocalDatabase = (props: UseAllHistoryParams) => {
         groupByTimeframe()
 
         console.log(data)
-    }, [ props?.userId ])
+    }, [ props?.userId, props?.startTime, props?.endTime ])
 
     return data
 }
 
 export default useLocalDatabase
-
-// allSensors[key] = value
-
-// Object.entries(parsed).forEach(([key, item]) => {
-//     const grouped = {
-//         hourInterval: <any>[],
-//         minuteInterval: <any>[]
-//     }
-
-//     item.forEach((val, index, arr) => {  
-//         const currentValDate = new Date(val?.last_changed)
-//         const lastValDate = new Date(arr[index - 1]?.last_changed)
-//         const nowTime = currentValDate.getTime()
-//         const prevTime = lastValDate.getTime()
-//         const difference = nowTime - prevTime
-       
-//         if(difference){
-//             const hours = difference / 3600000
-            
-//             if(hours >= 1){
-//                 grouped.hourInterval.push(val)
-//             } else {
-//                 grouped.minuteInterval.push(val)
-//             }
-//         }
-//     })
-
-//     allSensors[key] = grouped
-// });
-
-
-// previous Data
-// const grouped = {
-//     hourInterval: <any>[],
-//     minuteInterval: <any>[]
-// }
-
-// let prevTime: any = null;
-
-// item.forEach((val, index, arr) => {  
-//     const currentTime = new Date(val?.last_changed).getTime();
-//     if (prevTime) {
-//         const difference = (currentTime - prevTime) / (1000 * 60); // Difference in minutes
-
-//         if (difference >= 60) {
-//             grouped.hourInterval.push(val);
-//         } else {
-//             grouped.minuteInterval.push(val);
-//         }
-//     } else {
-//         grouped.hourInterval.push(val)
-//     }
-//     prevTime = currentTime;
-// })
-
-// allSensors[key] = grouped
-// });
-
-
-// by intevals nextTime - currentTime
-// const groupByIntervals = async() => {
-//     Object.entries(parsed).forEach(([key, item]) => {
-//         const grouped = {
-//             hourInterval: <any>[],
-//             minuteInterval: <any>[]
-//         }
-
-//         let currentTime: any = new Date(item[0].last_changed).getTime()
-
-//         item.forEach((val, index, arr) => {  
-//             const nextTime = new Date(arr[index + 1]?.last_changed).getTime();
-
-//             const difference = (nextTime - currentTime) / (1000 * 60); // Difference in minutes
-
-//             if (difference >= 60) {
-//                 grouped.hourInterval.push(val);
-//             } else {
-//                 grouped.minuteInterval.push(val);
-//             }
-            
-//             currentTime = nextTime;
-//         })
-
-//         allSensors[key] = grouped
-//     });
-
-//     console.log(allSensors)
-// }
-
-// groupByIntervals()
-
-// const groupedArray = byDay.reduce((acc, obj) => {
-        //     const found = acc.find((item: any) => item[0]?.time.hour === obj.time.hour)
-
-        //     if(found){
-        //         found.push(obj)
-        //     }else{
-        //         acc.push([obj])
-        //     }
-
-        //     return acc
-        // }, [])
-
-        // return([
-        //     ...groupedArray
-        // ])
-
-//---------------------------------------------------------------------
-
-//     const filledkwHArr = Object.entries(regroupDays).map(([key, value]) => {
-//         const toBeFilledArray = Array.from({ length: 24 }, (_, index) => [index, 0]);
-//         const dayArr = value
-
-//         dayArr.forEach(([hour, value, hourInterval]) => {
-//             toBeFilledArray[hour][1] = value;
-//             toBeFilledArray
-//         });
-// })
-
-    // const filledkwHArr = computeKwh.map(item => {
-    //     const toBeFilledArray = Array.from({ length: 24 }, (_, index) => [index, 0]);
-    //     const dayArr = item
-
-    //     dayArr.forEach(([hour, value]) => {
-    //         toBeFilledArray[hour][1] = value;
-    //     });
-
-    //     return toBeFilledArray
-    // })
-
-    // console.log('filledkWh: ')
-    // console.log(filledkwHArr)
-
-    // const joined = [].concat(...filledkwHArr)
-    
-    // const formattedTime = joined.map(item => ([
-    //     getHoursFromNumber(item[0]), item[1] 
-    // ]))
-
-    // console.log(formattedTime)
-
-    // console.log(regroupDays)
-
-    // const computeKwh = Object.entries(kwhConsumedObject).map(([monthKey, monthVal], monthIndex, monthArr) => {
-    //     if(Object.keys(monthVal).length === 0){
-    //         return [monthKey, {}]
-    //     }
-    
-    //     const dayArr = Object.entries(monthVal).map(([dayKey, dayVal], dayIndex, dayArr) => {
-    //         if(dayVal.length ===  0){
-    //             return [dayKey, []]
-    //         }
-            
-    //         const hourArr = dayVal.map((hourVal, hourIndex, hourArr) => {
-    //             if(hourVal[2] === false){
-    //                 return [hourVal[0], hourVal[1]]
-    //             } else if ((dayIndex === 0 && hourIndex === 0 && monthIndex === 0) ){
-    //                 // const prevData = nearestPrevData
-    //                 // const currentData = hourData
-    
-    //                 // const difference = hourData[1] - nearestPrevData
-    
-    //                 // return [hourData[0], difference]
-    //             }
-    //         }) 
-
-    //         return [dayKey, hourArr]
-    //     })
-
-    //     const toObject = Object.fromEntries(dayArr)
-
-    //     return [monthKey, toObject]
-    // })
-
-    //-------------------------------------------------------------------
-
-    // const computeKwh = kwhConsumed.map((item, parentIndex, parentArr) => {
-    //     if(item.length < 1){
-    //         console.log('pasok empty arr')
-    //         return ([])
-    //     }
-
-    //     console.log(`item ${parentIndex}`)
-    //     console.log(item)
-
-    //     const kwhPerHour = item.map((hourData, index, arr) => {
-    //         if(hourData[2] === false){
-    //             return [hourData[0], hourData[1]]
-    //         } else if ((parentIndex === 0 && index === 0) || (parentIndex > 0 && parentArr[parentIndex - 1].length < 1 && index === 0)){
-                
-    //             const prevData = nearestPrevData
-    //             const currentData = hourData
-
-    //             const difference = hourData[1] - nearestPrevData
-
-    //             return [hourData[0], difference]
-    //         } else if(index === 0 && parentIndex > 0){
-    //             const currentData = hourData
-    //             let prevArrLastIndex = parentArr[parentIndex - 1].length
-
-    //             while(parentArr[parentIndex - 1][prevArrLastIndex - 1][1] === 'unavailable' || parentArr[parentIndex - 1][prevArrLastIndex - 1][1] === 0){
-    //                 prevArrLastIndex--
-    //             }
-
-    //             const prevArrayData = parentArr[parentIndex - 1][prevArrLastIndex - 1]
-    //             const difference = currentData[1] - prevArrayData[1]
-
-    //             return [hourData[0], difference]
-    //         } else if(index > 0 && (hourData[1] !== 'unavailable' || hourData[1] !== 0)){
-    //             let prevStateIndex = index - 1
-
-    //             while(prevStateIndex >= 0 && (arr[prevStateIndex][1] === 'unavailable' || arr[prevStateIndex][1] === 0)){
-    //                 if(prevStateIndex === -1){
-    //                     return []
-    //                 }
-    //                 console.log('value ay 0')
-    //                 prevStateIndex--
-    //             }
-
-    //             // console.log(prevStateIndex)
-    //             const prevData = arr[prevStateIndex][1]
-    //             const currentData = hourData[1]
-    //             const difference = currentData - prevData
-
-    //             // console.log(prevState)
-    //             return [hourData[0], difference]
-    //         } else {
-    //             const prevData = nearestPrevData
-    //             const currentData = hourData
-    //             const difference = hourData[1] - nearestPrevData
-
-    //             return [hourData[0], difference]
-    //         }
-    //     })
-
-    //     return kwhPerHour
-    // })
-
-    // console.log(groupedByHour)
-    // const groupedByDay = _.groupBy(hoursArr, ({time}) => time.day)
-
-    // Object.entries(groupedByDay).map(([key, value]) => {
-    //     toBeFilledDayArr[key] = value
-    // })
-
-    // // console.log(toBeFilledDayArr)
-
-    // const byHour = Object.entries(toBeFilledDayArr).map(([key, byDay]) => {
-    //     if(byDay.length > 0){
-    //         const groupByHours = _.groupBy(byDay, ({time}) => time.hour)
-
-    //         return groupByHours
-    //     }
-    //     else{
-    //         return ([])
-    //     }
-    // })
-
-    // // console.log(groupedByDay)
-    // // console.log(byHour)
-
-    // const kwhConsumed = byHour.map(item => {
-    //     return (
-    //         Object.entries(item).map(([key, value]) => {
-    //             if(value.length > 0){
-    //                 let lastItemIndex = value.length - 1
-    //                 let firstItemIndex = 0
-    //                 let hourInterval
-                    
-    //                 if(value.length === 1){
-    //                     return([
-    //                         parseInt(key), value[0].state, hourInterval = true
-    //                     ])
-    //                 }
-
-    //                 while(value[firstItemIndex].state === 'unavailable' || value[firstItemIndex].state === 0){
-    //                     firstItemIndex++
-    //                 }
-
-    //                 while(value[lastItemIndex].state === 'unavailable' || value[firstItemIndex].state === 0){
-    //                     lastItemIndex--
-    //                 }
-
-    //                 const firstStateVal = value[firstItemIndex].state
-    //                 const lastStateVal = value[lastItemIndex].state
-    //                 const kwh = lastStateVal - firstStateVal
-
-    //                 console.log(getHoursFormat(value[firstItemIndex].time.last_changed))
-    //                 console.log(new Date(value[firstItemIndex].time.last_changed))
-    //                 return (
-    //                     [
-    //                         parseInt(key), kwh, hourInterval = false
-    //                     ]
-    //                 )
-    //             } else {
-    //                 return ([])
-    //             }
-    //         })
-    //     )
-    // })
-
-    // console.log(kwhConsumed)
-
-    // // compute if hourInterval
-    // const computeKwh = kwhConsumed.map((item, parentIndex, parentArr) => {
-    //     if(item.length < 1){
-    //         console.log('pasok empty arr')
-    //         return ([])
-    //     }
-
-    //     console.log(`item ${parentIndex}`)
-    //     console.log(item)
-
-    //     const kwhPerHour = item.map((hourData, index, arr) => {
-    //         if(hourData[2] === false){
-    //             return [hourData[0], hourData[1]]
-    //         } else if ((parentIndex === 0 && index === 0) || (parentIndex > 0 && parentArr[parentIndex - 1].length < 1 && index === 0)){
-                
-    //             const prevData = nearestPrevData
-    //             const currentData = hourData
-
-    //             const difference = hourData[1] - nearestPrevData
-
-    //             return [hourData[0], difference]
-    //         } else if(index === 0 && parentIndex > 0){
-    //             const currentData = hourData
-    //             let prevArrLastIndex = parentArr[parentIndex - 1].length
-
-    //             while(parentArr[parentIndex - 1][prevArrLastIndex - 1][1] === 'unavailable' || parentArr[parentIndex - 1][prevArrLastIndex - 1][1] === 0){
-    //                 prevArrLastIndex--
-    //             }
-
-    //             const prevArrayData = parentArr[parentIndex - 1][prevArrLastIndex - 1]
-    //             const difference = currentData[1] - prevArrayData[1]
-
-    //             return [hourData[0], difference]
-    //         } else if(index > 0 && (hourData[1] !== 'unavailable' || hourData[1] !== 0)){
-    //             let prevStateIndex = index - 1
-
-    //             while(prevStateIndex >= 0 && (arr[prevStateIndex][1] === 'unavailable' || arr[prevStateIndex][1] === 0)){
-    //                 if(prevStateIndex === -1){
-    //                     return []
-    //                 }
-    //                 console.log('value ay 0')
-    //                 prevStateIndex--
-    //             }
-
-    //             // console.log(prevStateIndex)
-    //             const prevData = arr[prevStateIndex][1]
-    //             const currentData = hourData[1]
-    //             const difference = currentData - prevData
-
-    //             // console.log(prevState)
-    //             return [hourData[0], difference]
-    //         } else {
-    //             const prevData = nearestPrevData
-    //             const currentData = hourData
-    //             const difference = hourData[1] - nearestPrevData
-
-    //             return [hourData[0], difference]
-    //         }
-    //     })
-
-    //     return kwhPerHour
-    // })
-
-    // // console.log('computeKwh: ')
-    // // console.log(computeKwh)
-
-    // const filledkwHArr = computeKwh.map(item => {
-    //     const toBeFilledArray = Array.from({ length: 24 }, (_, index) => [index, 0]);
-    //     const dayArr = item
-
-    //     dayArr.forEach(([hour, value]) => {
-    //         toBeFilledArray[hour][1] = value;
-    //     });
-
-    //     return toBeFilledArray
-    // })
-
-    // // console.log('filledkWh: ')
-    // // console.log(filledkwHArr)
-
-    // const joined = [].concat(...filledkwHArr)
-    
-    // const formattedTime = joined.map(item => ([
-    //     getHoursFromNumber(item[0]), item[1] 
-    // ]))
-
-    // console.log(formattedTime)
-
-//-------------------------------------------]
-
-    // while(monthVal[firstItemIndex].state === 'unavailable' || monthVal[firstItemIndex].state === 0){
-    //     firstItemIndex++
-    // }
-        
-    // monthVal.every((item, index, arr) => {
-    //     if(index === 0){
-    //         return true
-    //     }
-    //     if (item.state !== 0 && item.state !== 'unavailable' && (item.state < arr[index - 1].state)){ //accumulates state differences when accumulation of kwH resets
-    //         const stateBeforeReset = arr[index - 1].state
-    //         const firstItemOfIteration = arr[firstItemIndex].state
-    //         const kwh = stateBeforeReset - firstItemOfIteration
-    //         accumulator = accumulator + kwh + item.state
-    //         firstItemIndex = index
-    //         return false
-    //     } else {
-    //         return true
-    //     }
-    // })
-
-    // while(monthVal[lastItemIndex].state === 'unavailable' || monthVal[firstItemIndex].state === 0){
-    //     lastItemIndex--
-    // }
-
-    // let firstStateVal = monthVal[firstItemIndex].state
-    // let lastStateVal = monthVal[lastItemIndex].state
-
-    // if(monthIndex + 1 < 12 && monthArr[monthIndex + 1].length > 0){
-    //     const nextMonthArr = monthArr[monthIndex + 1][1]
-    //     nextMonthArr.every((item, index, arr) => {
-    //         // console.log(item)
-    //         const hasNoVal = item.state === 0 || item.state === 'unavailable'
-    //         if((item.time.hour >= 20 || item.time.day > 1) && !hasNoVal){
-    //             lastStateVal = item.state
-    //             return false
-    //         } 
-    //         return true
-    //     })
-    // } else if (yearIndex + 1 < yearLength && yearArr[yearIndex + 1].length > 0){
-    //     const nextMonthArr = Object.entries(yearArr[yearIndex + 1][1])[0][1]
-    //     if(nextMonthArr.length > 0){
-    //         nextMonthArr.every((item, index, arr) => {
-    //             const hasNoVal = item.state === 0 || item.state === 'unavailable'
-    //             if((item.time.hour >= 20 || item.time.day > 1) && !hasNoVal){
-    //                 lastStateVal = item.state
-    //                 return false
-    //             } 
-    //             return true
-    //         })
-    //     }
-    // }  
-
-    // console.log(`first: ${firstStateVal}`)
-    // console.log(`last: ${lastStateVal}`)
-
-    // const kwh = (lastStateVal - firstStateVal) + accumulator
-
-    // console.log(`kwh: ${kwh}`)
-
-    // return [ monthKey, kwh ]
