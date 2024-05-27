@@ -6,6 +6,55 @@
     
 }
 
+.display-none {
+    display: none;
+}
+
+.dashboard-header-title{
+    font-size: 32px;
+    color: var(--ha-50);
+}
+
+.switches-title{
+    margin-top: -20px;
+    margin-bottom: -30px;
+}
+
+.energy-usage-summary-section-title{
+    font-size: 16px;
+    color: var(--ha-900)
+}
+
+.dashboard-header-subtitle{
+    font-size: 16px;
+    color: var(--ha-50)
+}
+
+.title-emphasis{
+    font-size: 96px;
+    color: var(--ha-50);
+}
+
+.time-range-text{
+    font-size: 24px;
+    color: var(--ha-900)
+}
+
+.date-range-header-text{
+    font-size: 32px;
+    color: var(--ha-900)
+}
+
+.date-range-header-label{
+    font-size: 16px;
+    color: var(--ha-900)
+}
+
+.date-range-button-text{
+    font-size: 16px;
+    color: var(--ha-900)
+}
+
 .device-value-text{
     font-weight: 700;
     font-size: 28px;
@@ -50,7 +99,7 @@
 
 .appliance-card{
     display: flex;
-    /* flex: 1 1 1; */
+    flex: 1 0 0;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -82,7 +131,6 @@
 
     gap: 10px;
     padding: 15px;
-    height: 100vw;
 }
 
 .switch-card-details-header{
@@ -160,6 +208,7 @@
     padding-bottom: 20px;
     height: 100%;
     min-width: 15%;
+    gap: 10px;
 
     border-radius: 25px;
 }
@@ -217,7 +266,8 @@
     align-items: center;
     align-self: stretch;
     padding: 15px;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
+    padding-top: 25px;
 
     background-color: var(--ha-S50);
     border-top-left-radius: 30px;
@@ -232,6 +282,91 @@
     align-self: stretch;
     margin-top: 25px;
     gap: 25px;
+}
+
+.time-range-display-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.time-range-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 50vw;
+}
+
+.date-range-container{
+    /* position: absolute; */
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    align-items: center;
+    
+    margin: 15px;
+    margin-top: 25%;
+    overflow-y: scroll;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    
+    background-color: var(--ha-50);
+
+    border-radius: 15px;
+}
+
+.date-range-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    padding-left: 30px
+}
+
+.date-range-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    align-self: stretch;
+    padding-right: 30px;
+    gap: 10px
+}
+
+.date-range-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.calendar-pressable{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid var(--ha-S500);
+    padding: 5px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 7px 2px var(--ha-S900); */
+}
+
+.calendar-pressable:active {
+    background-color: var(--ha-S200);
 }
   
 .date-picker-container {
@@ -272,17 +407,19 @@
 
 .dashboard-container {
     display: flex;
+    flex: 1 0 0;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     align-self: stretch;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-top: 50px;
+    overflow-y: 'hidden';
+    gap: 70px
 }
 
 .no-data-component {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     align-self: stretch;
@@ -293,11 +430,60 @@
 
 .bottom-navigation-container{
     display: flex;
+    flex: 1 0 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-self: stretch;
     gap: 0px;
+    position: relative;
+}
+
+.header-bg-container{
+    display: flex;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+}
+
+.screen-header{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.screen-general-container{
+    position: relative;
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+
+    padding: 15px;
+    margin-top: 50px;
+
+    overflow-y: 'hidden';
+}
+
+.screen-general-centered{
+    justify-content: space-between;
+    gap: 5vw
+}
+
+.dashboard-header{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    padding-left: 30px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -306,6 +492,10 @@
     
         border-radius: 25px;
         /* flex: 1 0 0 */
+    }
+
+    .dashboard-container{
+        gap: 35px;
     }
 
     .switch-card{
@@ -349,6 +539,10 @@
 
     .switches-group{
         gap: 25px
+    }
+
+    .screen-general-centered{
+        gap: 25vw;
     }
 }
 

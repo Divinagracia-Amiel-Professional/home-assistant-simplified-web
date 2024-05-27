@@ -4,11 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
+import { TelevisionIcon, LightningBoltIcon, ToggleSwitchOutlineIcon, ViewDashboardIcon, HeaderBG } from '../constants/icons'
 import Switches from './components/switches';
 import { CustomSwitches, Dashboard, MyAppliances, EnergyDetails } from './ScreensIndex'
 import { 
@@ -20,10 +16,15 @@ import {
     SidebarCard, 
     AreaCard
 } from '@hakit/components';
+import useWindowDimensions from '../scripts/custom-hooks/useWindowDimensions';
 
 const FixedBottomNavigation = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState('dashboard');
   const ref = React.useRef<HTMLDivElement>(null);
+  const {
+    width: screenWidth,
+    height: screemHeight
+  } = useWindowDimensions()
 
   console.log(value)
 
@@ -31,20 +32,26 @@ const FixedBottomNavigation = () => {
     <div
         className='bottom-navigation-container'
     >
+        <div
+            className='header-bg-container'
+        >
+            <HeaderBG fill={'var(--ha-900)'} height={300} width={screenWidth}/>
+        </div>
         {getScreenToDisplay(value)}
         <Box sx={{ pb: 7 }} ref={ref}>
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
             <BottomNavigation
-            showLabels
-            value={value}
-            onChange={(event, newValue) => {
-                setValue(newValue);
-            }}
+                showLabels
+                value={value}
+                onChange={(event, newValue) => {
+                    setValue(newValue);
+                }}
+                sx={{height: 80}}
             >
-            <BottomNavigationAction label="Dashboard" />
-            <BottomNavigationAction label="Energy" />
-            <BottomNavigationAction label="My Appliances" />
-            <BottomNavigationAction label="Switches" />
+            <BottomNavigationAction value={'dashboard'} label="Dashboard" icon={<ViewDashboardIcon />} />
+            <BottomNavigationAction value={'energy'} label="Energy" icon={<LightningBoltIcon />}/>
+            <BottomNavigationAction value={'appliances'} label="My Appliances" icon={<TelevisionIcon />} />
+            <BottomNavigationAction value={'switches'} label="Switches" icon={<ToggleSwitchOutlineIcon />} />
             </BottomNavigation>
         </Paper>
         </Box>
@@ -52,14 +59,14 @@ const FixedBottomNavigation = () => {
   );
 }
 
-const getScreenToDisplay = (value: number) => {
+const getScreenToDisplay = (value: string) => {
     switch(value){
-        case 1: 
+        case 'energy': 
             return <EnergyDetails />
-        case 2:
+        case 'appliances':
             return <MyAppliances />
-        case 3: 
-            return <Switches />
+        case 'switches': 
+            return <CustomSwitches />
         default:
             return <Dashboard />
     }

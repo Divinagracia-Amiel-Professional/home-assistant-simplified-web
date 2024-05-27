@@ -18,6 +18,8 @@ import DevicesCards from './components/dashboard/devicesCards';
 import useWindowDimensions from '../scripts/custom-hooks/useWindowDimensions'
 import EnergyUsageSummary from './components/dashboard/energyUsageSummary';
 import FixedBottomNavigation from './BottomNavigation';
+import Header from './components/header';
+import dayjs from 'dayjs';
 
 const Dashboard = () => {
   const [ efanEnabled, setEfanEnabled ] = useState<boolean>(false)
@@ -26,6 +28,8 @@ const Dashboard = () => {
   const entities = useStore(store => store.entities);
   const { data: sensorData } = useSensorData()
   const windowDimensions = useWindowDimensions()
+  const dateNow = dayjs()
+  const dateDisplayString = `${dateNow.format('D')}th ${dateNow.format('MMMM YYYY')}`
 
   useEffect(() => {
     async function fetchUser() {
@@ -50,31 +54,18 @@ const Dashboard = () => {
   // test Object.entries
   const dimensionLogic = windowDimensions.width >= 1000 ? 15 : 0
 
-  return <Row
-    fullWidth 
-    fullHeight
-    wrap='nowrap'
-    style={{
-      overflowY: 'scroll',
-      backgroundColor: 'var(--ha-S100)',
-    }}
+  return( 
+    <div
+      className='dashboard-container'
+      style={{
+        marginLeft: dimensionLogic,
+        marginRight: dimensionLogic,
+      }}
     >
-      <Column
-        fullWidth 
-        fullHeight
-        style={{
-          marginTop: 50,
-          marginLeft: dimensionLogic,
-          marginRight: dimensionLogic,
-          overflow: 'hidden',
-          justifyContent: 'flex-end'
-        }}
-        // justifyContent='flex-end'
-      >
-        <DevicesCards />
-        <EnergyUsageSummary user={currentUserData.id}/>
-      </Column>
-  </Row> 
-}
+      <Header type={'dashboard'} data={{date: dateDisplayString, user: currentUserData.name}}/>
+      <DevicesCards />
+      <EnergyUsageSummary user={currentUserData.id}/>
+    </div>
+)}
 
 export default Dashboard

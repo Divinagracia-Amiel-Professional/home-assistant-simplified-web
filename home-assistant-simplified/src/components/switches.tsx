@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
 import { SwitchCard } from './card/cardsIndex';
 import useLatestSensorData from '../../scripts/custom-hooks/useLatestSensorData'
+import Header from './header';
 
 const Switches = () => {
     return <Column
@@ -85,7 +86,18 @@ const CustomSwitches = () => {
         Monitor: latestSensorData.data[3],
     }
 
-    console.log(latestSensorData)
+    const switchStates = [
+        ACSwitch?.state, EFanSwitch?.state, MonitorSwitch?.state, DesktopSwitch?.state
+    ]
+
+    let numOfRunning = 0
+    switchStates.forEach(state => {
+        if(state === 'on'){
+            numOfRunning++
+        }
+    })
+
+    const numOfDevices = Object.keys(destructuredData).length
 
     const switchValues = [
         {
@@ -150,7 +162,16 @@ const CustomSwitches = () => {
         },
     ]
 
-    return <>
+    return <div
+        className='screen-general-container'
+    >
+        <Header 
+            type={'switches'} 
+            data={{
+                numOfRunning: numOfRunning,
+                numOfDevices: numOfDevices,
+            }} 
+        />
         <div
             className='switches-group'
         >
@@ -172,7 +193,7 @@ const CustomSwitches = () => {
                 })
             }
         </div>
-    </>
+    </div>
 }
 
 export default Switches

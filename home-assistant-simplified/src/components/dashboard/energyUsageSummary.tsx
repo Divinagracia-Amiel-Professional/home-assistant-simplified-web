@@ -34,7 +34,7 @@ const EnergyUsageSummary = (props: any) => {
             <div
                 className="energy-usage-summary-section"
             >
-                <p>{currentYear}</p>
+                <p className="energy-usage-summary-section-title poppins-bold">Energy Consumed In {currentYear}</p>
                 <EnergyUsageGraph historyParams={historyParams}/>
             </div>
         </div>

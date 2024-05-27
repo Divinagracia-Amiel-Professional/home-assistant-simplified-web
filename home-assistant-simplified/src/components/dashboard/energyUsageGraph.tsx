@@ -51,10 +51,10 @@ const EnergyUsageGraph = (props: any) => {
     // const [ page, setPage ] = useState<number>(0)
     // const [ historyParams, setHistoryParams ] = useState<UseAllHistoryParams>(null)
     const [ selected, setSelected ] = useState({
-        AC: false,
-        Efan: false,
-        PC: false,
-        Monitor: false,
+        AC: true,
+        Efan: true,
+        PC: true,
+        Monitor: true,
     })
 
     useEffect(() => {
@@ -89,9 +89,27 @@ const EnergyUsageGraph = (props: any) => {
         PC: PCData?.arr
     }
 
+    // useEffect(() => {
+    //     Object.entries(dataGroup).forEach(([key, value]) => {
+    //         if(value){
+    //             setSelected(prevState => ({
+    //                 ...prevState,
+    //                 [key]: !prevState[key]
+    //             }))
+    //         }
+    //     })
+    // }, [dataGroup])
+
     const SensorData = [EfanData, ACData, MonitorData, PCData]
 
+    // const selectedData = Object.entries(dataGroup).filter(([key, value]) => {
+    //     return selected[key]
+    // }).map(item => item[1])
+
+    // console.log(selectedData)
+
     const haveValues = SensorData.filter(data => data)
+
     const itemLength = haveValues.length ? haveValues[0].arr.length : 0 
 
     const numberOfItems = itemLength ? (Math.floor(itemLength / 6) > 0 ? 6 : itemLength ) : 1
@@ -100,7 +118,7 @@ const EnergyUsageGraph = (props: any) => {
     const to = Math.min((sliderVal + 1) * numberOfItems, itemLength);
 
     const minPage = 0
-    const maxPage = Math.ceil(itemLength / 6) 
+    const maxPage = Math.ceil(itemLength / 6) - 1
 
     const PagedData = haveValues.length ? haveValues.map(data => data.arr.slice(from, to)) : null
 
@@ -153,9 +171,9 @@ const EnergyUsageGraph = (props: any) => {
     return <div
         className='energy-usage-graph'
     >
-        <p>{sliderVal}</p>
+        {/* <p>{sliderVal}</p>
         <p>{`from: ${from} to ${to}`}</p>
-        <p>{`min: ${minPage} max: ${maxPage}`}</p>
+        <p>{`min: ${minPage} max: ${maxPage}`}</p> */}
         <FormGroup
             row
             style={{
@@ -166,7 +184,7 @@ const EnergyUsageGraph = (props: any) => {
                 className='energy-usage-graph-content'
             >
                 <div
-                    className='energy-usage-graph-section'
+                    className='energy-usage-graph-section display-none'
                 >
                     <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.AC} onChange={() => { handleSelected('AC') }}/>} label="AC" />
                     <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.Efan} onChange={() => { handleSelected('Efan') }}/>} label="Efan" />
@@ -181,7 +199,7 @@ const EnergyUsageGraph = (props: any) => {
                 <div
                     className='energy-usage-graph-section'
                     style={{
-                        display: maxPage > 1 ? 'flex' : 'none'
+                        display: maxPage > 0 ? 'flex' : 'none'
                     }}
                 >
                     <Slider 

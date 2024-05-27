@@ -67,7 +67,8 @@ const DeviceCard = (props: any) => {
     const iconParams : IconParams = props.iconParams
     const deviceInfo = {
         name: props.name ? props.name : 'Unknown Device',
-        value: props.value ? props.value : 0.01
+        value: props.value ? (props.value === 'unavailable' ? 'NA' : 'NA') : props.value 
+        // value: props.value ? props.value : 'unavailable'
     }
 
     return (

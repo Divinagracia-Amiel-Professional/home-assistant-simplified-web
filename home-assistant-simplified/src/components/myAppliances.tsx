@@ -4,6 +4,7 @@ import { useHass, useEntity, useHistory } from "@hakit/core";
 import { Switches } from './areasIndex'
 import { AirCon, Efan, Monitor, SystemUnit, MenuDownIcon } from '../../constants/icons'
 import { MyApplianceCard } from './card/cardsIndex';
+import Header from './header';
 
 const MyAppliances = () => {
 
@@ -34,7 +35,10 @@ const MyAppliances = () => {
         },
     ]
 
-    return <>
+    return <div
+        className='screen-general-container'
+    >
+        <Header type={'appliance'} />
         <div
             className='appliance-group'
         >
@@ -47,7 +51,7 @@ const MyAppliances = () => {
                 })
             }
         </div>
-    </>
+    </div>
 }
 
 export default MyAppliances
