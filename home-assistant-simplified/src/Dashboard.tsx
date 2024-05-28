@@ -54,6 +54,10 @@ const Dashboard = () => {
   // test Object.entries
   const dimensionLogic = windowDimensions.width >= 1000 ? 15 : 0
 
+  // const hadb = useSensorData()
+
+  // console.log(hadb)
+
   return( 
     <div
       className='dashboard-container'

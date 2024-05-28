@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { 
     MenuDownIcon,
     MenuUpIcon,
@@ -12,6 +12,7 @@ import useLatestSensorData from "../../../scripts/custom-hooks/useLatestSensorDa
 import useWindowDimensions from "../../../scripts/custom-hooks/useWindowDimensions";
 import { UseAllHistoryParams } from "../../../scripts/custom-hooks/useLocalDatabase";
 import EnergyUsageGraph from "./energyUsageGraph";
+import InsightsSection from './insightsSections'
 
 const EnergyUsageSummary = (props: any) => {
     const utc = new Date(Date.now())
@@ -36,9 +37,10 @@ const EnergyUsageSummary = (props: any) => {
             >
                 <p className="energy-usage-summary-section-title poppins-bold">Energy Consumed In {currentYear}</p>
                 <EnergyUsageGraph historyParams={historyParams}/>
+                <InsightsSection />
             </div>
         </div>
     )
 }
 
-export default EnergyUsageSummary
+export default memo(EnergyUsageSummary)

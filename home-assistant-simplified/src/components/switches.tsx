@@ -86,16 +86,37 @@ const CustomSwitches = () => {
         Monitor: latestSensorData.data[3],
     }
 
+    // const switchStates = [
+    //     ACSwitch?.state, EFanSwitch?.state, MonitorSwitch?.state, DesktopSwitch?.state
+    // ]
+
     const switchStates = [
-        ACSwitch?.state, EFanSwitch?.state, MonitorSwitch?.state, DesktopSwitch?.state
+        {
+            power: destructuredData.AC?.power,
+            switchState: ACSwitch?.state
+        },
+        {
+            power: destructuredData.Efan?.power,
+            switchState: EFanSwitch?.state
+        },
+        {
+            power: destructuredData.Desktop?.power,
+            switchState: DesktopSwitch?.state
+        },
+        {
+            power: destructuredData.Monitor?.power,
+            switchState: MonitorSwitch?.state
+        }
     ]
 
     let numOfRunning = 0
     switchStates.forEach(state => {
-        if(state === 'on'){
+        if(state.switchState === 'off'){
             numOfRunning++
         }
     })
+
+    console.log(destructuredData)
 
     const numOfDevices = Object.keys(destructuredData).length
 

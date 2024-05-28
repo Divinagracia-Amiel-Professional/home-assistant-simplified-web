@@ -35,7 +35,7 @@ const Content = (props: any) => {
         case 'dashboard':
             return(
                 <div
-                    className='dashboard-header'
+                    className='dashboard-header dashboard-margin'
                 >
                     <p className='dashboard-header-subtitle poppins-regular'>{data.date}</p>
                     <p className='dashboard-header-title poppins-bold'>Hello, {data.user}</p>
@@ -44,16 +44,16 @@ const Content = (props: any) => {
         case 'switches':
             return(
                 <div 
-                    className='dashboard-header'
+                    className='dashboard-header switches-header-margin'
                 >
                     <p className='dashboard-header-title switches-title poppins-bold'><span className='title-emphasis'>{data.numOfRunning}</span> out of {data.numOfDevices}</p>
-                    <p className='dashboard-header-subtitle poppins-regular'>Running Appliances</p>
+                    <p className='dashboard-header-subtitle poppins-regular'>Running Sockets</p>
                 </div>
             )
         default: 
             return(
                 <div
-                    className='dashboard-header'
+                    className='dashboard-header dashboard-margin'
                 >
                     <p className='dashboard-header-title poppins-bold'>{name}</p>
                 </div>

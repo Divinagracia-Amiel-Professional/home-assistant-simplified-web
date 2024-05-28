@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
-import { TelevisionIcon, LightningBoltIcon, ToggleSwitchOutlineIcon, ViewDashboardIcon, HeaderBG } from '../constants/icons'
+import { TelevisionIcon, LightningBoltIcon, ToggleSwitchOutlineIcon, ViewDashboardIcon, HeaderBG, AltLogo } from '../constants/icons'
 import Switches from './components/switches';
 import { CustomSwitches, Dashboard, MyAppliances, EnergyDetails } from './ScreensIndex'
 import { 
@@ -26,12 +26,17 @@ const FixedBottomNavigation = () => {
     height: screemHeight
   } = useWindowDimensions()
 
-  console.log(value)
+//   console.log(value)
 
   return (
     <div
         className='bottom-navigation-container'
     >
+        <div 
+            className='alt-logo-container'
+        >
+            <AltLogo fill={'var(--ha-S100)'} height={72} width={72}/>
+        </div>
         <div
             className='header-bg-container'
         >

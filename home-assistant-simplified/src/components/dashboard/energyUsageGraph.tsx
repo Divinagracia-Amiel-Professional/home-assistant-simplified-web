@@ -1,5 +1,5 @@
 import { Column, Group, TimeCard, ButtonCard } from '@hakit/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, memo } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
 import { VictoryBar } from 'victory';
 import useSensorHistory, { UseHistoryParams } from '../../../scripts/custom-hooks/useSensorHistory';
@@ -16,6 +16,7 @@ import {
     VictoryAxis 
 } from 'victory';
 import { Slider } from '@mui/material';
+import { DatabaseOffOutlineIcon } from '../../../constants/icons'
 
 const customStyleLabel = {
     '.MuiFormControlLabel-label': {
@@ -222,9 +223,15 @@ const NoDataComponent = (props: any) => {
         <div
             className='no-data-component'
         >
-            <p>There is no data</p>
+            <DatabaseOffOutlineIcon size={96} color={'var(--ha-S300)'} />
+            <p className='time-range-text poppins-bold'
+                style={{
+                    color: 'var(--ha-S300)',
+                    textAlign: 'center'
+                }}
+            >There is no data <br/> available</p>
         </div>
     )
 }
 
-export default EnergyUsageGraph
+export default memo(EnergyUsageGraph)

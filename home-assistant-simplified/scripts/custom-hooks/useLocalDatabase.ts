@@ -143,7 +143,6 @@ const getTotalKwH = (data: any, prevState: any) => {
     // }
 
     while(data[firstItemIndex].state === 'unavailable'){
-        console.log(firstItemIndex)
         firstItemIndex++
     }
 
@@ -234,7 +233,9 @@ const groupByYearsObject = (data: any, timeframe: TimeFrame, name: string) => {
     console.log(`name: ${name}`)
     console.log(yearArr)
 
-    if(yearArr.length === 0){
+    const yearArrNoUnavail = yearArr.filter(entity => entity.state !== 'unavailable')
+
+    if(yearArrNoUnavail.length === 0){
         console.log('null')
         return null
     }
@@ -259,7 +260,7 @@ const groupByYearsObject = (data: any, timeframe: TimeFrame, name: string) => {
         return state.time.hour
     }
 
-    const grouped = nestedGrouping(yearArr, [byYear, byMonth, byDay, byHour])
+    const grouped = nestedGrouping(yearArrNoUnavail, [byYear, byMonth, byDay, byHour])
 
     console.log(grouped)
 
@@ -446,9 +447,12 @@ const groupByHours = async(timeframe: TimeFrame, data: any[], name: string, diff
         }
     })
 
+    console.log(toFlatMapAllValues)
     console.log(computeKwh)
     
     const computeTotalKwh = getTotalKwH(toFlatMapAllValues, nearestPrevData)
+
+    console.log(computeTotalKwh)
 
     if(!computeKwh.length){
         return 0
@@ -820,8 +824,8 @@ const useLocalDatabase = (props: UseAllHistoryParams) => {
 
                 const differenceInDays = ((parsedTimeframe.end.getTime() - parsedTimeframe.start.getTime()) / (1000 * 60 * 60 * 24))
 
-                console.log(differenceInDays)
-                console.log(parsedTimeframe)
+                // console.log(differenceInDays)
+                // console.log(parsedTimeframe)
 
                 const hourDayTimeFrame: TimeFrame = {
                     start: parseTimestamp(timeFrame.start),
