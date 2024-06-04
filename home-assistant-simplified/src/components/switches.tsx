@@ -1,5 +1,5 @@
 import { Column, Group, TimeCard, ButtonCard, SidebarCard, AreaCard, Row } from '@hakit/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
 import { SwitchCard } from './card/cardsIndex';
 import useLatestSensorData from '../../scripts/custom-hooks/useLatestSensorData'
@@ -217,8 +217,8 @@ const CustomSwitches = () => {
     </div>
 }
 
-export default Switches
+export default memo(CustomSwitches)
 
 export {
-    CustomSwitches
+    Switches
 }

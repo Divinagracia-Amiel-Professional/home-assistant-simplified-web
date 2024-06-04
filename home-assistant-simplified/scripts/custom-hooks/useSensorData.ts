@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
 import { TimeFrame } from './useLocalDatabase';
 import useCounter from './useCounter'
+import { getHourMinuteFormat } from '../functions/getMDYFormat';
 
 interface historyData {
 
@@ -15,6 +16,19 @@ const sensorChannel = ['1', '2']
 const sensorVariables = [ 'current',  'energy', 'power', 'voltage']
 const channel1 = ['', '2']
 const channel2 = ['4','5']
+
+export const getDeviceName = (id: string) => {
+    switch(id){
+        case 'sensor_2':
+            return 'Electric Fan'
+        case 'sensor_4':
+            return 'PC'
+        case 'sensor_5':
+            return 'Monitor'
+        default:
+            return 'AC'
+    }
+}
 
 const computeHourUsed = async(data: any, timeframe: TimeFrame) => {
     const powerData = data.map(datum => ({
@@ -34,8 +48,8 @@ const computeHourUsed = async(data: any, timeframe: TimeFrame) => {
         const hourMap = powerData.map(datum => {
             if(!datum.power.length){
                 return {
-                    name: datum.name,
-                    hoursUsed: 0
+                    name: getDeviceName(datum.name),
+                    hoursUsed: getHourMinuteFormat(0)
                 }
             }
 
@@ -66,8 +80,8 @@ const computeHourUsed = async(data: any, timeframe: TimeFrame) => {
             const hoursConsumed = secondsConsumed / (60 * 60)
 
             return {
-                name: datum.name,
-                hoursUsed: hoursConsumed
+                name: getDeviceName(datum.name),
+                hoursUsed: getHourMinuteFormat(hoursConsumed)
             }
         })    
 
@@ -79,26 +93,23 @@ const computeHourUsed = async(data: any, timeframe: TimeFrame) => {
 
 const useSensorData = (mode: string) => {
     const [sensorData, setSensorData] = useState<any>(null)
-    const counter = useCounter(3)
-
-    const testHistory = useEntity(`sensor.esphometest_1_energy`, {
-        historyOptions: {
-            disable: false,
-            hoursToShow: 10000,
-        }
-    })
-
-    const testDate = new Date(1711967731.424306 * 1000)
-
-    // console.log(testDate)
-
-    // console.log(testHistory)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    
+    const counter = useCounter(5)
 
     const chan1_data = channel1.map(order => {
-        const currentSensor = useHistory(`sensor.esphometest_1_current${order}`)
-        const energySensor = useHistory(`sensor.esphometest_1_energy${order}`)
-        const powerSensor = useHistory(`sensor.esphometest_1_power${order}`)
-        const voltageSensor = useHistory(`sensor.esphometest_1_voltage${order}`)
+        const currentSensor = useHistory(`sensor.esphometest_1_current${order}`, {
+            hoursToShow: (24 * 3)
+        })
+        const energySensor = useHistory(`sensor.esphometest_1_energy${order}`, {
+            hoursToShow: (24 * 3)
+        })
+        const powerSensor = useHistory(`sensor.esphometest_1_power${order}`, {
+            hoursToShow: (24 * 3)
+        })
+        const voltageSensor = useHistory(`sensor.esphometest_1_voltage${order}`, {
+            hoursToShow: (24 * 3)
+        })
 
         return ({
             name: `sensor_${order}`,
@@ -110,10 +121,18 @@ const useSensorData = (mode: string) => {
     })
 
     const chan2_data = channel2.map(order => {
-        const currentSensor = useHistory(`sensor.esphometest_2_current${order}`)
-        const energySensor = useHistory(`sensor.esphometest_2_energy${order}`)
-        const powerSensor = useHistory(`sensor.esphometest_2_power${order}`)
-        const voltageSensor = useHistory(`sensor.esphometest_2_voltage${order}`)
+        const currentSensor = useHistory(`sensor.esphometest_2_current${order}`, {
+            hoursToShow: (24 * 3)
+        })
+        const energySensor = useHistory(`sensor.esphometest_2_energy${order}`, {
+            hoursToShow: (24 * 3)
+        })
+        const powerSensor = useHistory(`sensor.esphometest_2_power${order}`, {
+            hoursToShow: (24 * 3)
+        })
+        const voltageSensor = useHistory(`sensor.esphometest_2_voltage${order}`, {
+            hoursToShow: (24 * 3)
+        })
 
         return ({
             name: `sensor_${order}`,
@@ -143,7 +162,7 @@ const useSensorData = (mode: string) => {
 
     const dataLoadingStates = data.flatMap(datum => {
         const datumLoadingStates = Object.entries(datum).flatMap(([key, val]) => {
-            if(key === 'name'){
+            if(key !== 'power'){
                 return null
             }
     
@@ -170,9 +189,9 @@ const useSensorData = (mode: string) => {
             }
     
             if(dataLoadingStates.length === 0){
-                const hourUsedToday = await computeHourUsed(data, timeFrameToday)
+                const hourUsed = await computeHourUsed(data, timeFrameToday)
 
-                setSensorData(hourUsedToday)
+                setSensorData(hourUsed)
             }
         }
         
@@ -192,14 +211,24 @@ const useSensorData = (mode: string) => {
             }
     
             if(dataLoadingStates.length === 0){
-                const hourUsedToday = await computeHourUsed(data, timeFrameYesterday)
+                const hourUsed = await computeHourUsed(data, timeFrameYesterday)
 
-                setSensorData(hourUsedToday)
+                setSensorData(hourUsed)
             }
         }
         
         getHourUsed()
     }
+
+    useEffect(() => {
+        if(dataLoadingStates.length === 0){
+            setIsLoading(false)
+        } else {
+            setIsLoading(true)
+        }
+    }, [dataLoadingStates])
+
+    console.log(data)
 
     useEffect(() => {
         switch(mode){
@@ -213,7 +242,7 @@ const useSensorData = (mode: string) => {
                 break;
         }
     }, [ counter ])
-    return { data: sensorData }
+    return { data: sensorData, isLoading: isLoading }
 }
 
 export default useSensorData

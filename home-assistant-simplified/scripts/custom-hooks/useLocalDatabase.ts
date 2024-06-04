@@ -132,7 +132,9 @@ const createEmptyYearArr = (timeframe: TimeFrame) => {
     return toObject
 }
 
-const getTotalKwH = (data: any, prevState: any) => {
+export const getTotalKwH = (data: any, prevState: any) => {
+    console.log(data.length)
+
     if(!data.length){
         return 0
     }
@@ -377,7 +379,7 @@ const groupByHours = async(timeframe: TimeFrame, data: any[], name: string, diff
             }
             const difference = currentState - prevState
             prevState = currentState
-            return [getHoursFromNumber(item[0]), difference]
+            return [getHoursFromNumber(item[0]), doRoundNumber(difference, 2)]
         } else if (item[1].length > 1){ //when hourArray has 5 minute intervals
             let accumulator = 0
             let firstItemIndex = 0
@@ -419,7 +421,7 @@ const groupByHours = async(timeframe: TimeFrame, data: any[], name: string, diff
                 }
             }) 
 
-            return [getHoursFromNumber(item[0]), accumulator] 
+            return [getHoursFromNumber(item[0]), doRoundNumber(accumulator, 2)] 
 
         } else { //when hourInterval
             const noVal = item[1][0].state === 0 || item[1][0].state === 'unavailable'
@@ -438,11 +440,11 @@ const groupByHours = async(timeframe: TimeFrame, data: any[], name: string, diff
                 // if(Math.abs([itemState - prevState]))
                 // accumulator = accumulator + item.state
                 prevState = currentState
-                return [getHoursFromNumber(item[0]), accumulator]
+                return [getHoursFromNumber(item[0]), doRoundNumber(accumulator, 2)]
             } else {
                 const difference = currentState - prevState
                 prevState = currentState
-                return [getHoursFromNumber(item[0]), difference]
+                return [getHoursFromNumber(item[0]), doRoundNumber(difference, 2)]
             }
         }
     })
@@ -551,7 +553,7 @@ const groupByDays = async(timeframe: TimeFrame, data: any[], name: string) => {
             }
             const difference = currentState - prevState
             prevState = currentState
-            return [dayKey, difference]
+            return [dayKey, doRoundNumber(difference, 2)]
         } else if (dayVal.length > 1){
             let accumulator = 0
             let firstItemIndex = 0
@@ -599,7 +601,7 @@ const groupByDays = async(timeframe: TimeFrame, data: any[], name: string) => {
             
             // prevState = returnedPrev
 
-            return [dayKey, accumulator]
+            return [dayKey, doRoundNumber(accumulator, 2)]
         } else {
             const noVal = dayVal[0].state === 0 || dayVal[0].state === 'unavailable'
             let accumulator = 0
@@ -617,11 +619,11 @@ const groupByDays = async(timeframe: TimeFrame, data: any[], name: string) => {
                 // if(Math.abs([itemState - prevState]))
                 // accumulator = accumulator + item.state
                 prevState = currentState
-                return [dayKey, accumulator]
+                return [dayKey, doRoundNumber(accumulator, 2)]
             } else {
                 const difference = currentState - prevState
                 prevState = currentState
-                return [dayKey, difference]
+                return [dayKey, doRoundNumber(difference, 2)]
             }
         }
     })

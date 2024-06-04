@@ -234,7 +234,6 @@
     gap: 15px;
 
     width: 100%;
-    height: 35%;
 }
 
 .energy-usage-summary-title{
@@ -244,7 +243,6 @@
     font-weight: 700;
     font-size: 20px;
     color: var(--ha-900);
-    padding-left: 30px;
 }
 
 .energy-usage-summary-container{
@@ -254,8 +252,6 @@
     align-items: center;
     align-self: stretch;
     gap: 20px;
-
-    height: 60%;
 }
 
 .energy-usage-summary-section{
@@ -265,6 +261,7 @@
     justify-content: flex-start;
     align-items: center;
     align-self: stretch;
+    gap: 15px;
     padding: 15px;
     padding-bottom: 100px;
     padding-top: 25px;
@@ -280,6 +277,70 @@
     justify-content: center;
     align-items: center;
     align-self: stretch;
+    gap: 10px
+}
+
+.insights-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    padding-left: 15px;
+}
+
+.insights-section-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    background-color: var(--ha-S100);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.insights-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}
+
+.insights-section-header{
+    
+}
+
+.insights-section-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 25px;
+}
+
+.insights-list-item{
+    color: var(--ha-900);
+    padding-left: 0
 }
 
 .energy-details-content {
@@ -289,6 +350,7 @@
     align-items: center;
     align-self: stretch;
     margin-top: 5px;
+    padding-bottom: 50px;
     gap: 25px;
 }
 
@@ -525,7 +587,7 @@
     }
 
     .dashboard-container{
-        gap: 35px;
+        gap: 20px;
     }
 
     .switch-card{
@@ -550,12 +612,12 @@
     
         padding: 25px;
         width: 100%;
-        height: 30%;
     }
 
 }
 
 @media only screen and (max-width: 600px) {
+
     .appliance-card{
         min-width: 185px;
     

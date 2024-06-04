@@ -31,13 +31,16 @@ const EnergyUsageSummary = (props: any) => {
         >
             <p
                 className="energy-usage-summary-title"
+                style={{
+                    paddingLeft: 30
+                }}
             >Energy Usage Summary</p>
             <div
                 className="energy-usage-summary-section"
             >
                 <p className="energy-usage-summary-section-title poppins-bold">Energy Consumed In {currentYear}</p>
                 <EnergyUsageGraph historyParams={historyParams}/>
-                <InsightsSection />
+                <InsightsSection/>
             </div>
         </div>
     )

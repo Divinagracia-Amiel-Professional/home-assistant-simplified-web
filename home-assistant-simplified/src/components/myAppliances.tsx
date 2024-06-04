@@ -1,18 +1,20 @@
 import { Column, Group, TimeCard, ButtonCard, SidebarCard, AreaCard } from '@hakit/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
 import { Switches } from './areasIndex'
 import { AirCon, Efan, Monitor, SystemUnit, MenuDownIcon } from '../../constants/icons'
 import { MyApplianceCard } from './card/cardsIndex';
 import Header from './header';
+import useSensorEnergyData from '../../scripts/custom-hooks/useSensorEnergyData'
 
-const MyAppliances = () => {
+const MyAppliances = (props: any) => {  
+    // console.log(sensorEnergyData)
 
     const appliancesProps = [
         {
             entityName: 'Desktop',
             iconParams: {
-                type: 'SystemUnit',
+                type: 'PC',
             }
         },
         {
@@ -44,7 +46,8 @@ const MyAppliances = () => {
         >
             {
                 appliancesProps.map(appliances => {
-                    return <MyApplianceCard 
+                    return <MyApplianceCard
+                        key={appliances.entityName} 
                         entityName={appliances.entityName}
                         iconParams={appliances.iconParams}
                     />
@@ -54,4 +57,4 @@ const MyAppliances = () => {
     </div>
 }
 
-export default MyAppliances
+export default memo(MyAppliances)

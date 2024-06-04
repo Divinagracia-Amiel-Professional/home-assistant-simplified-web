@@ -7,7 +7,7 @@ import {
   SidebarCard, 
   AreaCard
 } from '@hakit/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
 import useSensorData from '../scripts/custom-hooks/useSensorData'
 import { CallApiExample, useSensorHistory } from '../scripts/custom-hooks/apiHooks'
@@ -21,12 +21,11 @@ import FixedBottomNavigation from './BottomNavigation';
 import Header from './components/header';
 import dayjs from 'dayjs';
 
-const Dashboard = () => {
+const Dashboard = (props: any) => {
   const [ efanEnabled, setEfanEnabled ] = useState<boolean>(false)
   const { getAllEntities, useStore, getUser } = useHass();
   const [ user, setUser ] = useState<HassUser | null>(null)
   const entities = useStore(store => store.entities);
-  const { data: sensorData } = useSensorData()
   const windowDimensions = useWindowDimensions()
   const dateNow = dayjs()
   const dateDisplayString = `${dateNow.format('D')}th ${dateNow.format('MMMM YYYY')}`
@@ -72,4 +71,4 @@ const Dashboard = () => {
     </div>
 )}
 
-export default Dashboard
+export default memo(Dashboard)

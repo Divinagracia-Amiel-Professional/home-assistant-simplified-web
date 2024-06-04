@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo, useContext } from "react";
+import { HAContext } from "../../BottomNavigation";
+import { CircularProgress } from "@mui/material";
 import { 
     MenuDownIcon,
     MenuUpIcon,
@@ -30,7 +32,7 @@ const getIcon = (params: IconParams) => {
             return <Efan fill={fill} height={dimensions} width={dimensions}/>
         case 'Monitor':
             return <Monitor fill={fill} height={dimensions} width={dimensions}/>
-        case 'SystemUnit':
+        case 'PC':
             return <SystemUnit fill={fill} height={dimensions} width={dimensions}/>
         default:
             return null
@@ -51,7 +53,61 @@ const MyApplianceCard = (props: any) => {
         dimensions: props.iconParams?.dimensions ? props.iconParams.dimensions : defaultIconParams.dimensions,
     }
 
-    console.log(iconParams)
+    const {appliancesData: energyData} = useContext(HAContext)
+
+    const thisApplianceData = Object.entries(energyData).map(([timeframe, datum]) => {
+        const name = props.iconParams.type !== 'Efan' ? props.iconParams.type : 'Electric Fan'
+
+        const thisEnergyDatum = datum ? datum.find(sensor => sensor.name === name).totalkWh : null
+
+        return [timeframe, thisEnergyDatum !== undefined ? thisEnergyDatum : 0]
+    })
+
+    const applianceDataObject = Object.fromEntries(thisApplianceData)
+
+    const hasData = energyData.today && energyData.yesterday
+
+    const details = (
+        <div
+            className='appliance-card-details'
+            style={{
+                display: isDetailsExpanded ? 'block' : 'none',
+            }}
+        >
+            <div
+                className='appliance-card-details-element'
+            >
+                <p
+                    className='details-header poppins-bold'
+                    style={{
+                        color: 'var(--ha-500)'
+                    }}
+                >Today</p>
+                <p
+                    className='details-body poppins-regular'
+                    style={{
+                        color: 'var(--ha-500)'
+                    }}
+                >{`${applianceDataObject.today} kWH`}</p>
+            </div>
+            <div
+                className='appliance-card-details-element'
+            >
+                <p
+                    className='details-header poppins-bold'
+                    style={{
+                        color: 'var(--ha-500)'
+                    }}
+                >Yesterday</p>
+                <p
+                    className='details-body poppins-regular'
+                    style={{
+                        color: 'var(--ha-500)'
+                    }}
+                >{`${applianceDataObject.yesterday} kWH`}</p>
+            </div>
+        </div>
+    )
 
     return(
         <div
@@ -73,45 +129,9 @@ const MyApplianceCard = (props: any) => {
                     }}
                 >{props.entityName ? props.entityName : 'No Device'}</p>
             </div>
-            <div
-                className='appliance-card-details'
-                style={{
-                    display: isDetailsExpanded ? 'block' : 'none',
-                }}
-            >
-                <div
-                    className='appliance-card-details-element'
-                >
-                    <p
-                        className='details-header poppins-bold'
-                        style={{
-                            color: 'var(--ha-500)'
-                        }}
-                    >Today</p>
-                    <p
-                        className='details-body poppins-regular'
-                        style={{
-                            color: 'var(--ha-500)'
-                        }}
-                    >kWH</p>
-                </div>
-                <div
-                    className='appliance-card-details-element'
-                >
-                    <p
-                        className='details-header poppins-bold'
-                        style={{
-                            color: 'var(--ha-500)'
-                        }}
-                    >Yesterday</p>
-                    <p
-                        className='details-body poppins-regular'
-                        style={{
-                            color: 'var(--ha-500)'
-                        }}
-                    >kWH</p>
-                </div>
-            </div>
+                    {
+                        hasData ? details : <CircularProgress style={{display: isDetailsExpanded ? 'block' : 'none'}} />
+                    }
             <div
                 className='appliance-card-menu-down'
                 style={{
@@ -138,7 +158,7 @@ const MyApplianceCard = (props: any) => {
     )
 }
 
-export default MyApplianceCard
+export default memo(MyApplianceCard)
 
 export {
     getIcon,

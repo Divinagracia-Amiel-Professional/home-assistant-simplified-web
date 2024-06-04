@@ -33,7 +33,7 @@ const DevicesCards = (props: any) => {
         },
         {
             name: 'Desktop',
-            type: 'SystemUnit',
+            type: 'PC',
             data: latestSensorData.data[2].energy
         },
         {

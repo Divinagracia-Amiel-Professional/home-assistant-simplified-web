@@ -1,5 +1,5 @@
 import { Column, Group, TimeCard, ButtonCard, SidebarCard, AreaCard } from '@hakit/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
 import { Switches } from './areasIndex'
 import { AirCon, Efan, Monitor, SystemUnit, MenuDownIcon, CalendarRangeIcon } from '../../constants/icons'
@@ -234,5 +234,5 @@ const EnergyDetails = (props: any) => {
     )
 }
 
-export default EnergyDetails
+export default memo(EnergyDetails)
 

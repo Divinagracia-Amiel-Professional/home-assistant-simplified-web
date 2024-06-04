@@ -1,7 +1,7 @@
 import { Column, Group, TimeCard, ButtonCard } from '@hakit/components';
 import { useState, useEffect, useMemo, memo } from 'react';
 import { useHass, useEntity, useHistory } from "@hakit/core";
-import { VictoryBar } from 'victory';
+import { Axis, VictoryBar } from 'victory';
 import useSensorHistory, { UseHistoryParams } from '../../../scripts/custom-hooks/useSensorHistory';
 import useLocalDatabase, { UseAllHistoryParams } from '../../../scripts/custom-hooks/useLocalDatabase'
 import FormGroup from '@mui/material/FormGroup';
@@ -13,10 +13,14 @@ import {
     VictoryLabel,
     VictoryStack,
     VictoryHistogram,
-    VictoryAxis 
+    VictoryAxis,
+    VictoryLegend,
+    VictoryTooltip
 } from 'victory';
 import { Slider } from '@mui/material';
 import { DatabaseOffOutlineIcon } from '../../../constants/icons'
+import useWindowDimensions from '../../../scripts/custom-hooks/useWindowDimensions';
+import { fill } from 'lodash';
 
 const customStyleLabel = {
     '.MuiFormControlLabel-label': {
@@ -32,11 +36,19 @@ const customStyleCheck = {
     },
 }
 
+const textStyle = {
+    fontFamily: "Poppins",
+    fontWeight: 700,
+    fontStyle: 'normal',
+    fill: 'var(--ha-900)'
+}
+
 //style of axis
 const sharedAxisStyles = {
+    axis: {stroke: 'transparent'},
     grid: {stroke: 'transparent'},
     tickLabels: {
-      fontSize: 13
+        ...textStyle
     },
     axisLabel: {
       padding: 39,
@@ -45,9 +57,20 @@ const sharedAxisStyles = {
     }
   };
 
+const colorScale = [ 
+    "var(--ha-900)",
+    "var(--ha-800)",
+    "var(--ha-400)",
+    "var(--ha-200)",
+]
+
 const EnergyUsageGraph = (props: any) => {
     const [ isLoading, setIsLoading ] = useState<boolean>(false)
     const [ sliderVal, setSliderVal ] = useState<number>(0)
+    const {
+        width: screenWidth,
+        height: screenHeight
+    } = useWindowDimensions()
 
     // const [ page, setPage ] = useState<number>(0)
     // const [ historyParams, setHistoryParams ] = useState<UseAllHistoryParams>(null)
@@ -90,6 +113,7 @@ const EnergyUsageGraph = (props: any) => {
         PC: PCData?.arr
     }
 
+    console.log(dataGroup)
     // useEffect(() => {
     //     Object.entries(dataGroup).forEach(([key, value]) => {
     //         if(value){
@@ -109,9 +133,9 @@ const EnergyUsageGraph = (props: any) => {
 
     // console.log(selectedData)
 
-    const haveValues = SensorData.filter(data => data)
+    const haveValues = Object.entries(dataGroup).filter(([key, val]) => val)
 
-    const itemLength = haveValues.length ? haveValues[0].arr.length : 0 
+    const itemLength = haveValues.length ? haveValues[0][1].length : 0 
 
     const numberOfItems = itemLength ? (Math.floor(itemLength / 6) > 0 ? 6 : itemLength ) : 1
 
@@ -121,34 +145,79 @@ const EnergyUsageGraph = (props: any) => {
     const minPage = 0
     const maxPage = Math.ceil(itemLength / 6) - 1
 
-    const PagedData = haveValues.length ? haveValues.map(data => data.arr.slice(from, to)) : null
+    const PagedData = haveValues.length ? haveValues.map(([name, data]) => ([name, data.slice(from, to)])) : null
 
-    console.log(PagedData)
+    // console.log(PagedData)
 
     const VictoryChartComponent = (props: any) => {
         return(
-            <VictoryChart>
+            <VictoryChart
+                height={screenHeight * 0.7}
+                width={screenWidth}
+                containerComponent={
+                    <VictoryVoronoiContainer
+                    style={{}}
+                    labels={(datum) => {
+                        console.log(datum)
+                        }
+                    }
+                    />
+                }
+            >
+                <VictoryLegend 
+                    x={35}
+                    orientation="horizontal"
+                    gutter={20}
+                    colorScale={colorScale}
+                    data={PagedData?.flatMap(([name, data], index, arr) => ({name: name, labels: {...textStyle, fill: colorScale[index]}}))}
+                />
                 <VictoryStack
-                    domainPadding={10}
-                    colorScale={[
-                        "var(--ha-900)",
-                        "var(--ha-700)",
-                        "var(--ha-500)",
-                        "var(--ha-300)",
-                        // "#d45087",
-                        // "#f95d6a",
-                        // "#ff7c43",
-                        // "#ffa600"
-                    ]}
+                    domainPadding={2.5}
+                    colorScale={colorScale}
                 >
                     {
-                        PagedData.map(data => {
+                        PagedData.map(([key, data], index, arr)=> {
+
                             return(
                                 <VictoryBar 
-                                    barRatio={1}
+                                    barRatio={1.4}
+                                    cornerRadius={{
+                                        // topLeft: index === arr.length - 1 ? 10 : 0,
+                                        // topRight: index === arr.length - 1 ? 10 : 0
+                                        // topLeft: 10,
+                                        // topRight: 10
+                                    }}
+                                    labelComponent={
+                                        <VictoryTooltip
+                                            flyoutPadding={{
+                                                top: 10,
+                                                bottom: 10,
+                                                left: 20,
+                                                right: 20
+                                            }}
+                                            flyoutStyle={{
+                                                fill: 'var(--ha-S50)', strokeWidth: 0,
+                                                filter: 'drop-shadow( 0px 0px 5px var(--ha-S500))'
+                                        
+                                            }}
+                                            style={{
+                                                ...textStyle
+                                            }}
+                                            
+                                        />
+                                    }
+                                    labels={({ datum }) => `Energy for ${key}: ${datum[1]} kWh`}
                                     data={data}
                                     x={0}
                                     y={1}
+                                    // events={[{
+                                    //     target: 'data',
+                                    //     eventHandlers: {
+                                    //       onClick: (event, data) => {
+                                    //         console.log(`clicked ${JSON.stringify(data.datum)}`)
+                                    //       },
+                                    //     },
+                                    // }]}
                                 />
                             )
                         }) 
@@ -159,6 +228,13 @@ const EnergyUsageGraph = (props: any) => {
                     // tickValues={[1, 2, 3, 4]}
                     // tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
                     style={sharedAxisStyles}
+                    // tickLabelComponent={
+                    //     <VictoryLabel
+                    //         style={{
+                    //             fill: 'var(--ha-900)'
+                    //         }}
+                    //     />
+                    // }
                 />
 
                 {/* <VictoryAxis
@@ -193,6 +269,11 @@ const EnergyUsageGraph = (props: any) => {
                     <FormControlLabel sx={customStyleLabel} control={<Checkbox sx={customStyleCheck} checked={selected.Monitor} onChange={() => { handleSelected('Monitor') }}/>} label="Monitor" />
                 </div>
                 <div
+                    className='energy-usage-graph-legend-container'
+                >
+                    
+                </div>
+                <div
                     className='energy-usage-graph-section'
                 >
                     {PagedData ? <VictoryChartComponent /> : <NoDataComponent />}
@@ -211,6 +292,8 @@ const EnergyUsageGraph = (props: any) => {
                         marks
                         min={minPage}
                         max={maxPage}
+                        // min={0}
+                        // max={1}
                     />
                 </div>
             </div>

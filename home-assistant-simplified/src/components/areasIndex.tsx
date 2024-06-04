@@ -1,4 +1,4 @@
-import Switches, { CustomSwitches } from "./switches";
+import CustomSwitches, { Switches } from "./switches";
 import MyAppliances from "./myAppliances";
 import EnergyDetails from "./energyDetails";
 

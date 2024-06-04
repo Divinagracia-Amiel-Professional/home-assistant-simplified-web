@@ -50,10 +50,22 @@ const getHoursFromNumber = (hour: number) => {
     return `${hourFormatted}:00 ${suffix}`
 }
 
+const getHourMinuteFormat = (hourDecimal: number) => {
+    const hours = Math.floor(hourDecimal)
+    const minutes = Math.floor((hourDecimal - hours) * 60)
+
+    return {
+        hour: hours,
+        minute: minutes
+    }
+}
+
+
 export default getMDYFormat
 export {
     get12HFormat,
     getMDYFormatGetFunctions,
     getHoursFormat,
-    getHoursFromNumber
+    getHoursFromNumber,
+    getHourMinuteFormat
 }
