@@ -20,36 +20,40 @@ interface CalendarEvent {
 
 interface Response {
   data: any;
-  status: string
+  status: string;
 }
 
 type Attributes = {
-    friendly_name: string;
-    unit_of_measurement: string
-}
+  friendly_name: string;
+  unit_of_measurement: string;
+};
 
 interface History {
-    attributes?: Attributes;
-    entity_id?: string;
-    last_changed: string;
-    last_updated?: string;
-    state: Number;
+  attributes?: Attributes;
+  entity_id?: string;
+  last_changed: string;
+  last_updated?: string;
+  state: Number;
 }
 
 const CallApiExample = () => {
-    const { callApi } = useHass();
-    const [res, setRes] = useState<Response>();
-    const retrieveCalendarEvents = useCallback(() => {
-      (async() => {
-        const response = await callApi<CalendarEvent[]>('/calendars/calendar.google_calendar?start=2023-09-30T14:00:00.000Z&end=2023-11-11T13:00:00.000Z');
-        setRes(response);
-      })()
-    }, [callApi]);
-    return <>
-      <FabCard icon="mdi:view-module" onClick={retrieveCalendarEvents} />
+  const { callApi } = useHass();
+  const [res, setRes] = useState<Response>();
+  const retrieveCalendarEvents = useCallback(() => {
+    (async () => {
+      const response = await callApi<CalendarEvent[]>(
+        '/calendars/calendar.google_calendar?start=2023-09-30T14:00:00.000Z&end=2023-11-11T13:00:00.000Z'
+      );
+      setRes(response);
+    })();
+  }, [callApi]);
+  return (
+    <>
+      <FabCard icon='mdi:view-module' onClick={retrieveCalendarEvents} />
       {res?.data?.length ? `There is ${res.data.length} events!` : 'No events'}
     </>
-  }
+  );
+};
 
 ///history/period?filter_entity_id=sensor.temperature
 ///history/period/2023-09-04T00:00:00+02:00?filter_entity_id=sensor.temperature,sensor.kitchen_temperature&minimal_response
@@ -60,30 +64,22 @@ const CallApiExample = () => {
 // /history/period/2024-02-00T00%3A00%3A00%2B08%3A00?end_time=2024-03-00T00%3A00%3A00%2B08%3A00&filter_entity_id=${name}$minimal_response
 // /history/period/2024-02-10T00:00:00+08:00?filter_entity_id=${name}&end_time=2024-03-10T00%3A00%3A00%2B08%3A00&minimal_response
 
-
 const useSensorHistory = (sensorName: any) => {
   const { callApi } = useHass();
-    const [res, setRes] = useState<Response>();
-    const name = sensorName;
-    const retrieveSensorHistory = useCallback(() => {
-      (async() => {
-        const response = await callApi<any>(`/history/period/2024-01-12T00:00:00+00:00?filter_entity_id=${name}&end_time=2024-05-02T00%3A00%3A00%2B00%3A00`);
-        setRes(response);
-      })()
-    }, [callApi]);
-    retrieveSensorHistory();
-    return { res }
-}
+  const [res, setRes] = useState<Response>();
+  const name = sensorName;
+  const retrieveSensorHistory = useCallback(() => {
+    (async () => {
+      const response = await callApi<any>(
+        `/history/period/2024-01-12T00:00:00+00:00?filter_entity_id=${name}&end_time=2024-05-02T00%3A00%3A00%2B00%3A00`
+      );
+      setRes(response);
+    })();
+  }, [callApi]);
+  retrieveSensorHistory();
+  return { res };
+};
 
-export type {
-  DateFormat,
-  Attributes,
-  CalendarEvent,
-  Response,
-  History
-}
+export type { DateFormat, Attributes, CalendarEvent, Response, History };
 
-export {
-  CallApiExample,
-  useSensorHistory
-}
+export { CallApiExample, useSensorHistory };

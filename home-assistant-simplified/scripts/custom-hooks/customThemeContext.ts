@@ -1,14 +1,7 @@
-import React, {useState, createContext} from 'react'
+import React, { useState, createContext } from 'react';
 
-const defaultVal = {
+const defaultVal = {};
 
-}
+const CustomTheme = createContext<object>(defaultVal);
 
-const CustomTheme = createContext<object>(defaultVal)
-
-export default CustomTheme
-
-
-
-
-
+export default CustomTheme;

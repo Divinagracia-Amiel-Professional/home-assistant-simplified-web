@@ -1,7 +1,4 @@
-import IOSSwitch from "./iosSwitch";
-import RangeCalendar from "./rangeCalendar";
+import IOSSwitch from './iosSwitch';
+import RangeCalendar from './rangeCalendar';
 
-export {
-    IOSSwitch,
-    RangeCalendar
-}
+export { IOSSwitch, RangeCalendar };

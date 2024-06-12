@@ -5,15 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prettier": "prettier --write .",
-    "sync": "npx ts-node --esm ./sync-types.ts",
+    "sync": "npx tsx ./sync-types.ts",
     "prebuild": "npm run prettier && npm run sync",
-    "deploy": "npx ts-node --esm scripts/deploy.ts"
+    "deploy": "npx tsx scripts/deploy.ts"
   },
   "dependencies": {
+    "@bdhamithkumara/react-push-notification": "^1.5.9",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@hakit/components": "^3.1.4",
@@ -29,6 +30,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.9",
+    "tsx": "^4.15.2",
     "victory": "^36.9.1"
   },
   "devDependencies": {

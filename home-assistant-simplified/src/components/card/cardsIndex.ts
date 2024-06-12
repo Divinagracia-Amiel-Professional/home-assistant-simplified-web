@@ -1,7 +1,4 @@
-import MyApplianceCard from "./myAppliancesCard";
-import SwitchCard from "./switchCard";
+import MyApplianceCard from './myAppliancesCard';
+import SwitchCard from './switchCard';
 
-export {
-    MyApplianceCard,
-    SwitchCard,
-}
+export { MyApplianceCard, SwitchCard };
