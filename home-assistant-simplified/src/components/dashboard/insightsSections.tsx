@@ -193,7 +193,6 @@ const InsightsSection = (props: any) => {
                     display: visibleSection.visibleEnergyUsage ? 'block' : 'none'
                   }}
                 >
-                  
                   {
                     getDiffInsight().map(insight => {
                       return <li className='insights-list-item poppins-bold'>{insight}</li>

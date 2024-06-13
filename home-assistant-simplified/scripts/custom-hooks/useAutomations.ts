@@ -88,6 +88,11 @@ const useAutomations = () => {
         theme: 'light',
         native: true,
       });
+      addNotification({
+        title: title,
+        message: message,
+        theme: 'light',
+      });
     }
   }, [data]);
 
