@@ -4,7 +4,7 @@ import { TimeFrame } from './useLocalDatabase';
 import useCounter from './useCounter';
 import { getHourMinuteFormat } from '../functions/getMDYFormat';
 import { getDeviceName } from './useSensorData';
-import { getTotalKwH } from './useLocalDatabase';
+import { doRoundNumber } from './useLocalDatabase';
 
 const sensorChannel = ['1', '2'];
 const sensorVariables = ['current', 'energy', 'power', 'voltage'];
@@ -21,11 +21,11 @@ const channel2 = ['4', '5'];
 const getDaysToShow = (mode: string) => {
   switch (mode) {
     case 'consumedToday':
-      return 1;
+      return 3;
     case 'consumedYesterday':
-      return 2;
+      return 3;
     default:
-      return 2;
+      return 3;
   }
 };
 
@@ -39,6 +39,66 @@ const convertDataToJSONformat = (data: any, timeframe: TimeFrame) => {
   });
 
   return sensorConverted;
+};
+
+export const getTotalKwH = (data: any, prevState: any) => {
+  if (!data.length) {
+    return { total: 0, prevState: prevState };
+  }
+
+  let firstItemIndex = 0;
+  let lastItemIndex = data.length - 1
+  // if(prevState === null){
+  //     prevState = nearestPrevData
+  // }
+
+  while (data[firstItemIndex].state === 'unavailable' && firstItemIndex < data.length) {
+    firstItemIndex++;
+  }
+
+  while (data[lastItemIndex].state === 'unavailable' && lastItemIndex >= 0){
+    lastItemIndex--;
+  }
+
+  var isfirstItemStateZero = data[firstItemIndex].state === 0;
+
+  const compute = data[lastItemIndex].state - data[firstItemIndex].state
+  
+  const computeTotalKwh = data.reduce((partialSum, entity, index, arr) => {
+    // console.log(partialSum)
+    // if (index <= firstItemIndex) {
+    //   prevState = entity.state;
+    //   return partialSum;
+    // } 
+    if (entity.state === 'unavailable' || !entity.state) {
+      return partialSum;
+    } 
+    // else if (typeof partialSum === 'string'){
+    //   return parseFloat(partialSum)
+    // }
+
+    const currentState = parseFloat(entity.state);
+    
+    if (currentState < prevState) {
+      const diffPrevToCurrent = Math.abs(currentState - prevState);
+      const diffZeroToCurrent = Math.abs(0 - currentState);
+
+      if (diffZeroToCurrent < diffPrevToCurrent) {
+        prevState = currentState;
+        return partialSum + currentState;
+      } else {
+        const difference = prevState - currentState;
+        prevState = currentState;
+        return partialSum + difference;
+      }
+    } else {
+      const difference = currentState - prevState;
+      prevState = currentState;
+      return partialSum + difference;
+    }
+  }, 0);
+
+  return { total: doRoundNumber(compute, 2), prevState: doRoundNumber(prevState, 2) };
 };
 
 const useSensorEnergyData = (sensorMode: string) => {
@@ -89,6 +149,11 @@ const useSensorEnergyData = (sensorMode: string) => {
   }, 0);
 
   const consumedTodayHandler = () => {
+    const timeFrameYesterday: TimeFrame = {
+      start: new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate() - 1, 0, 0, 0),
+      end: new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate() - 1, 23, 59, 59),
+    };
+
     const timeFrameToday: TimeFrame = {
       start: new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate(), 0, 0, 0),
       end: new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate(), 23, 59, 59),
@@ -102,15 +167,40 @@ const useSensorEnergyData = (sensorMode: string) => {
 
       if (dataLoadingStates.length === 0) {
         const jsonFormat = convertDataToJSONformat(data, timeFrameToday);
+        const yesterdayJson = convertDataToJSONformat(data, timeFrameYesterday);
 
-        const computed = jsonFormat.map(entity => {
+        // console.log(jsonFormat)
+
+        const today = jsonFormat.map(entity => {
           const { total, prevState } = getTotalKwH(entity.energy, 0);
           const sensorName = getDeviceName(entity.name);
 
           return { name: sensorName, totalkWh: total };
         });
 
-        setSensorData(computed);
+        const yesterday = yesterdayJson.map(entity => {
+          const { total, prevState } = getTotalKwH(entity.energy, 0);
+          const sensorName = getDeviceName(entity.name);
+
+          return { name: sensorName, totalkWh: total };
+        });
+
+        // console.log(yesterday)
+        // console.log(today)
+
+        const computed = today.map(entity => {
+          const yesterdayState = yesterday.find(yesterDayEntity => yesterDayEntity.name === entity.name);
+          if (!entity.totalkWh) {
+            return { name: entity.name, totalkWh: 0 };
+          }
+
+          // console.log(`today: ${entity.totalkWh}, yesterday: ${yesterday.totalkWh}}`)
+          const total = entity.totalkWh - yesterdayState.totalkWh;
+
+          return { name: entity.name, totalkWh: doRoundNumber(total, 2) };
+        });
+
+        setSensorData(today);
       }
     };
 
@@ -118,6 +208,11 @@ const useSensorEnergyData = (sensorMode: string) => {
   };
 
   const consumedYesterdayHandler = () => {
+    const timeFrameDayBfYes: TimeFrame = {
+      start: new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate() - 2, 0, 0, 0),
+      end: new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate() - 2, 23, 59, 59),
+    };
+
     const timeFrameYesterday: TimeFrame = {
       start: new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate() - 1, 0, 0, 0),
       end: new Date(dateToday.getFullYear(), dateToday.getMonth(), dateToday.getDate() - 1, 23, 59, 59),
@@ -131,15 +226,35 @@ const useSensorEnergyData = (sensorMode: string) => {
 
       if (dataLoadingStates.length === 0) {
         const jsonFormat = convertDataToJSONformat(data, timeFrameYesterday);
+        const twoDaysBfJson = convertDataToJSONformat(data, timeFrameDayBfYes);
         // const hourUsed = await computeHourUsed(data, timeFrameYesterday)
-        const computed = jsonFormat.map(entity => {
+
+        const yesterday = jsonFormat.map(entity => {
           const { total, prevState } = getTotalKwH(entity.energy, 0);
           const sensorName = getDeviceName(entity.name);
 
           return { name: sensorName, totalkWh: total };
         });
 
-        setSensorData(computed);
+        const twoDaysBf = twoDaysBfJson.map(entity => {
+          const { total, prevState } = getTotalKwH(entity.energy, 0);
+          const sensorName = getDeviceName(entity.name);
+
+          return { name: sensorName, totalkWh: total };
+        });
+
+        const computed = yesterday.map(entity => {
+          const twoDaysBfState = twoDaysBf.find(twoDaysBfEntity => twoDaysBfEntity.name === entity.name);
+          if (!entity.totalkWh) {
+            return { name: entity.name, totalkWh: 0 };
+          }
+
+          const total = entity.totalkWh - twoDaysBfState.totalkWh;
+
+          return { name: entity.name, totalkWh: doRoundNumber(total, 2) };
+        });
+
+        setSensorData(yesterday);
       }
     };
 

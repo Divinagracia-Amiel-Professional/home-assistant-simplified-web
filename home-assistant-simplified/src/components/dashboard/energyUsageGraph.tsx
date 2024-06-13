@@ -140,7 +140,7 @@ const EnergyUsageGraph = (props: any) => {
     return (
       <VictoryChart
         height={screenHeight * 0.7}
-        width={screenWidth}
+        width={screenWidth > 600 ? 500 : screenWidth}
         containerComponent={
           <VictoryVoronoiContainer
             style={{}}

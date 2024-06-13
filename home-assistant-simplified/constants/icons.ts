@@ -6,6 +6,7 @@ import MainLogo from '../assets/icons/mainLogo';
 import AltLogo from '../assets/icons/altLogo';
 import MenuDownIcon from 'mdi-react/MenuDownIcon';
 import MenuUpIcon from 'mdi-react/MenuUpIcon';
+import MenuRightIcon from 'mdi-react/MenuRightIcon'
 import ToggleSwitchOutlineIcon from 'mdi-react/ToggleSwitchOutlineIcon';
 import TelevisionIcon from 'mdi-react/TelevisionIcon';
 import LightningBoltIcon from 'mdi-react/LightningBoltIcon';
@@ -24,6 +25,7 @@ export {
   AltLogo,
   MenuDownIcon,
   MenuUpIcon,
+  MenuRightIcon,
   ToggleSwitchOutlineIcon,
   LightningBoltIcon,
   TelevisionIcon,

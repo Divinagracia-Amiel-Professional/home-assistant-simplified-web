@@ -6,9 +6,11 @@ import { ThemeProvider } from '@mui/material';
 import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import useWindowDimensions from '../../../scripts/custom-hooks/useWindowDimensions';
 
 const RangeCalendar = (props: any) => {
   const [currentCalendar, setCurrentCalendar] = useState<string>('start');
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
 
   const values = {
     start: props.value.start ? props.value.start : dayjs(),
@@ -38,13 +40,21 @@ const RangeCalendar = (props: any) => {
     return toDisplayDate?.format('MMMM D, YYYY');
   };
 
+  const modalStyle =
+    screenWidth > 500
+      ? {
+          top: '-20%',
+          left: '35%',
+        }
+      : {};
+
   return (
     <Modal
       open={props.modalState.isVisible}
       onClose={() => {
         handleClose();
       }}
-      sx={{ overflowY: 'scroll' }}
+      sx={modalStyle}
       keepMounted={false}
     >
       <div className='date-range-container'>

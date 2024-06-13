@@ -75,7 +75,7 @@ const useAutomations = () => {
 
   useEffect(() => {
     setCount(prevCount => prevCount + 1);
-    if (data.device && count > 2) {
+    if (data.device && count > 1) {
       const title = data.device.includes('Shutdown') ? `${data.device} has been turned off` : 'Increased Energy Consumption';
       const message = data.device.includes('Shutdown')
         ? `${data.device} has reached its energy cap for the day`

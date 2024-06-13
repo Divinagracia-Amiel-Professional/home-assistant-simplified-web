@@ -30,7 +30,7 @@ const doRoundtoFixed = (num: number, decPlaces: number) => {
   return rounded;
 };
 
-const doRoundNumber = (num: number, decPlaces: number) => {
+export const doRoundNumber = (num: number, decPlaces: number) => {
   const rounded = Math.round((num + Number.EPSILON) * 10 ** decPlaces) / 10 ** decPlaces;
 
   return rounded;

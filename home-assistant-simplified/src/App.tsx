@@ -9,7 +9,7 @@ import { Notifications } from '@bdhamithkumara/react-push-notification';
 function App() {
   return (
     <>
-      <Notifications position='top_middle' />
+      <Notifications position='top-middle' />
       <HassConnect hassUrl={import.meta.env.VITE_HA_URL}>
         <ThemeProvider
           hue={214}
